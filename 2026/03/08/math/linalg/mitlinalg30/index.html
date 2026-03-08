@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="第三十讲：奇异值分解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT线性代数30">
+<meta property="og:url" content="http://example.com/2026/03/08/math/linalg/mitlinalg30/index.html">
+<meta property="og:site_name" content="Eyphka">
+<meta property="og:description" content="第三十讲：奇异值分解">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-08T04:23:22.313Z">
+<meta property="article:modified_time" content="2026-03-08T05:03:11.950Z">
+<meta property="article:author" content="Daniel Liu">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/03/08/math/linalg/mitlinalg30/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/03/08/math/linalg/mitlinalg30/","path":"2026/03/08/math/linalg/mitlinalg30/","title":"MIT线性代数30"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MIT线性代数30 | Eyphka</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.1/pdfobject.min.js","integrity":"sha256-jI72I8ZLVflVOisZIOaLvRew3tyvzeu6aZXFm7P7dEo="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js" defer></script>
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Eyphka</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%8D%81%E8%AE%B2%EF%BC%9A%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3"><span class="nav-number">1.</span> <span class="nav-text">第三十讲：奇异值分解</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Daniel Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/08/math/linalg/mitlinalg30/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Daniel Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eyphka">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MIT线性代数30 | Eyphka">
+      <meta itemprop="description" content="第三十讲：奇异值分解">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MIT线性代数30
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-03-08 12:23:22 / Modified: 13:03:11" itemprop="dateCreated datePublished" datetime="2026-03-08T12:23:22+08:00">2026-03-08</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">第三十讲：奇异值分解</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="第三十讲：奇异值分解"><a href="#第三十讲：奇异值分解" class="headerlink" title="第三十讲：奇异值分解"></a>第三十讲：奇异值分解</h1><p>本讲我们介绍将一个矩阵写为$A&#x3D;U\varSigma V^T$，分解的因子分别为正交矩阵、对角矩阵、正交矩阵，与前面几讲的分解不同的是，这两个正交矩阵通常是不同的，而且这个式子可以对任意矩阵使用，不仅限于方阵、可对角化的方阵等。</p>
+<ul>
+<li><p>在正定一讲中（第二十八讲）我们知道一个正定矩阵可以分解为$A&#x3D;Q\Lambda Q^T$的形式，由于$A$对称性其特征向量是正交的，且其$\Lambda$矩阵中的元素皆为正，这就是正定矩阵的奇异值分解。在这种特殊的分解中，我们只需要一个正交矩阵$Q$就可以使等式成立。</p>
+</li>
+<li><p>在对角化一讲中（第二十二讲），我们知道可对角化的矩阵能够分解为$A&#x3D;S\Lambda S^T$的形式，其中$S$的列向量由$A$的特征向量组成，但$S$并不是正交矩阵，所以这不是我们希望得到的奇异值分解。</p>
+</li>
+</ul>
+<p>我们现在要做的是，在$A$的<strong>列空间</strong>中找到一组特殊的正交基$v_1,v_2,\cdots,v_r$，这组基在$A$的作用下可以转换为$A$的<strong>行空间</strong>中的一组正交基$u_1,u_2,\cdots,u_r$。</p>
+<p>用矩阵语言描述为$A\Bigg[v_1\ v_2\ \cdots\ v_r\Bigg]&#x3D;\Bigg[\sigma_1u_1\ \sigma_2u_2\ \cdots\ \sigma_ru_r\Bigg]&#x3D;\Bigg[u_1\ u_2\ \cdots\ u_r\Bigg]\begin{bmatrix}\sigma_1&amp;&amp;&amp;\\&amp;\sigma_2&amp;&amp;\\&amp;&amp;\ddots&amp;\\&amp;&amp;&amp;\sigma_n\end{bmatrix}$，即$Av_1&#x3D;\sigma_1u_1,\ Av_2&#x3D;\sigma_2u_2,\cdots,Av_r&#x3D;\sigma_ru_r$，这些$\sigma$是缩放因子，表示在转换过程中有拉伸或压缩。而$A$的左零空间和零空间将体现在$\sigma$的零值中。</p>
+<p>另外，如果算上左零、零空间，我们同样可以对左零、零空间取标准正交基，然后写为$A\Bigg[v_1\ v_2\ \cdots\ v_r\ v_{r+1}\ \cdots\ v_m\Bigg]&#x3D;\Bigg[u_1\ u_2\ \cdots\ u_r\ u_{r+1}\ \cdots \ u_n\Bigg]\left[\begin{array}{c c c|c}\sigma_1&amp;&amp;&amp;\\&amp;\ddots&amp;&amp;\\&amp;&amp;\sigma_r&amp;\\\hline&amp;&amp;&amp;\begin{bmatrix}0\end{bmatrix}\end{array}\right]$，此时$U$是$m\times m$正交矩阵，$\varSigma$是$m\times n$对角矩阵，$V^T$是$n\times n$正交矩阵。</p>
+<p>最终可以写为$AV&#x3D;U\varSigma$，可以看出这十分类似对角化的公式，矩阵$A$被转化为对角矩阵$\varSigma$，我们也注意到$U,\ V$是两组不同的正交基。（在正定的情况下，$U,\ V$都变成了$Q$。）。进一步可以写作$A&#x3D;U\varSigma V^{-1}$，因为$V$是标准正交矩阵所以可以写为$A&#x3D;U\varSigma V^T$</p>
+<p>计算一个例子，$A&#x3D;\begin{bmatrix}4&amp;4\\-3&amp;3\end{bmatrix}$，我们需要找到：</p>
+<ul>
+<li>行空间$\mathbb{R}^2$的标准正交基$v_1,v_2$；</li>
+<li>列空间$\mathbb{R}^2$的标准正交基$u_1,u_2$；</li>
+<li>$\sigma_1&gt;0, \sigma_2&gt;0$。</li>
+</ul>
+<p>在$A&#x3D;U\varSigma V^T$中有两个标准正交矩阵需要求解，我们希望一次只解一个，如何先将$U$消去来求$V$？</p>
+<p>这个技巧会经常出现在长方形矩阵中：求$A^TA$，这是一个对称正定矩阵（至少是半正定矩阵），于是有$A^TA&#x3D;V\varSigma^TU^TU\varSigma V^T$，由于$U$是标准正交矩阵，所以$U^TU&#x3D;I$，而$\varSigma^T\varSigma$是对角线元素为$\sigma^2$的对角矩阵。</p>
+<p>现在有$A^TA&#x3D;V\begin{bmatrix}\sigma_1&amp;&amp;&amp;\\&amp;\sigma_2&amp;&amp;\\&amp;&amp;\ddots&amp;\\&amp;&amp;&amp;\sigma_n\end{bmatrix}V^T$，这个式子中$V$即是$A^TA$的特征向量矩阵而$\varSigma^2$是其特征值矩阵。</p>
+<p>同理，我们只想求$U$时，用$AA^T$消掉$V$即可。</p>
+<p>我们来计算$A^TA&#x3D;\begin{bmatrix}4&amp;-3\\4&amp;3\end{bmatrix}\begin{bmatrix}4&amp;4\\-3&amp;3\end{bmatrix}&#x3D;\begin{bmatrix}25&amp;7\\7&amp;25\end{bmatrix}$，对于简单的矩阵可以直接观察得到特征向量$A^TA\begin{bmatrix}1\\1\end{bmatrix}&#x3D;32\begin{bmatrix}1\\1\end{bmatrix},\ A^TA\begin{bmatrix}1\\-1\end{bmatrix}&#x3D;18\begin{bmatrix}1\\-1\end{bmatrix}$，化为单位向量有$\sigma_1&#x3D;32,\ v_1&#x3D;\begin{bmatrix}\frac{1}{\sqrt{2}}\\\frac{1}{\sqrt{2}}\end{bmatrix},\ \sigma_2&#x3D;18,\ v_2&#x3D;\begin{bmatrix}\frac{1}{\sqrt{2}}\\-\frac{1}{\sqrt{2}}\end{bmatrix}$。</p>
+<p>到目前为止，我们得到$\begin{bmatrix}4&amp;4\\-3&amp;3\end{bmatrix}&#x3D;\begin{bmatrix}u_?&amp;u_?\\u_?&amp;u_?\end{bmatrix}\begin{bmatrix}\sqrt{32}&amp;0\\0&amp;\sqrt{18}\end{bmatrix}\begin{bmatrix}\frac{1}{\sqrt{2}}&amp;\frac{1}{\sqrt{2}}\\\frac{1}{\sqrt{2}}&amp;-\frac{1}{\sqrt{2}}\end{bmatrix}$，接下来继续求解$U$。</p>
+<p>$AA^T&#x3D;U\varSigma V^TV\varSigma^TU^T&#x3D;U\varSigma^2U^T$，求出$AA^T$的特征向量即可得到$U$，$\begin{bmatrix}4&amp;4\\-3&amp;3\end{bmatrix}\begin{bmatrix}4&amp;-3\\4&amp;3\end{bmatrix}&#x3D;\begin{bmatrix}32&amp;0\\0&amp;18\end{bmatrix}$，观察得$AA^T\begin{bmatrix}1\\0\end{bmatrix}&#x3D;32\begin{bmatrix}1\\0\end{bmatrix},\ AA^T\begin{bmatrix}0\\1\end{bmatrix}&#x3D;18\begin{bmatrix}0\\1\end{bmatrix}$。但是我们不能直接使用这一组特征向量，因为式子$AV&#x3D;U\varSigma$明确告诉我们，一旦$V$确定下来，$U$也必须取能够满足该式的向量，所以此处$Av_2&#x3D;\begin{bmatrix}0\\-\sqrt{18}\end{bmatrix}&#x3D;u_2\sigma_2&#x3D;\begin{bmatrix}0\\-1\end{bmatrix}\sqrt{18}$，则$u_1&#x3D;\begin{bmatrix}1\\0\end{bmatrix},\ u_2&#x3D;\begin{bmatrix}0\\-1\end{bmatrix}$。（这个问题在<a target="_blank" rel="noopener" href="http://ocw.mit.edu/courses/mathematics/18-06sc-linear-algebra-fall-2011/positive-definite-matrices-and-applications/singular-value-decomposition/MIT18_06SCF11_Ses3.5sum.pdf">本讲的官方笔记</a>中有详细说明。）</p>
+<ul>
+<li><p>补充：$AB$的特征值与$BA$的特征值相同，证明来自<a target="_blank" rel="noopener" href="http://math.stackexchange.com/questions/124888/are-the-eigenvalues-of-ab-equal-to-the-eigenvalues-of-ba-citation-needed">Are the eigenvalues of AB equal to the eigenvalues of BA? (Citation needed!)</a>：</p>
+<p>  取$\lambda\neq 0$，$v$是$AB$在特征值取$\lambda$时的的特征向量，则有$Bv\neq 0$，并有$\lambda Bv&#x3D;B(\lambda v)&#x3D;B(ABv)&#x3D;(BA)Bv$，所以$Bv$是$BA$在特征值取同一个$\lambda$时的特征向量。</p>
+<p>  再取$AB$的特征值$\lambda&#x3D;0$，则$0&#x3D;\det{AB}&#x3D;\det{A}\det{B}&#x3D;\det{BA}$，所以$\lambda&#x3D;0$也是$BA$的特征值，得证。</p>
+</li>
+</ul>
+<p>最终，我们得到$\begin{bmatrix}4&amp;4\\-3&amp;3\end{bmatrix}&#x3D;\begin{bmatrix}1&amp;0\\0&amp;-1\end{bmatrix}\begin{bmatrix}\sqrt{32}&amp;0\\0&amp;\sqrt{18}\end{bmatrix}\begin{bmatrix}\frac{1}{\sqrt{2}}&amp;\frac{1}{\sqrt{2}}\\\frac{1}{\sqrt{2}}&amp;-\frac{1}{\sqrt{2}}\end{bmatrix}$。</p>
+<p>再做一个例子，$A&#x3D;\begin{bmatrix}4&amp;3\\8&amp;6\end{bmatrix}$，这是个秩一矩阵，有零空间。$A$的行空间为$\begin{bmatrix}4\\3\end{bmatrix}$的倍数，$A$的列空间为$\begin{bmatrix}4\\8\end{bmatrix}$的倍数。</p>
+<ul>
+<li>标准化向量得$v_1&#x3D;\begin{bmatrix}0.8\\0.6\end{bmatrix},\ u_1&#x3D;\frac{1}{\sqrt{5}}\begin{bmatrix}1\\2\end{bmatrix}$。</li>
+<li>$A^TA&#x3D;\begin{bmatrix}4&amp;8\\3&amp;6\end{bmatrix}\begin{bmatrix}4&amp;3\\8&amp;6\end{bmatrix}&#x3D;\begin{bmatrix}80&amp;60\\60&amp;45\end{bmatrix}$，由于$A$是秩一矩阵，则$A^TA$也不满秩，所以必有特征值$0$，则另特征值一个由迹可知为$125$。</li>
+<li>继续求零空间的特征向量，有$v_2&#x3D;\begin{bmatrix}0.6\\-0,8\end{bmatrix},\ u_1&#x3D;\frac{1}{\sqrt{5}}\begin{bmatrix}2\\-1\end{bmatrix}$</li>
+</ul>
+<p>最终得到$\begin{bmatrix}4&amp;3\\8&amp;6\end{bmatrix}&#x3D;\begin{bmatrix}1&amp;\underline {2}\\2&amp;\underline{-1}\end{bmatrix}\begin{bmatrix}\sqrt{125}&amp;0\\0&amp;\underline{0}\end{bmatrix}\begin{bmatrix}0.8&amp;0.6\\\underline{0.6}&amp;\underline{-0.8}\end{bmatrix}$，其中下划线部分都是与零空间相关的部分。</p>
+<ul>
+<li>$v_1,\ \cdots,\ v_r$是行空间的标准正交基；</li>
+<li>$u_1,\ \cdots,\ u_r$是列空间的标准正交基；</li>
+<li>$v_{r+1},\ \cdots,\ v_n$是零空间的标准正交基；</li>
+<li>$u_{r+1},\ \cdots,\ u_m$是左零空间的标准正交基。</li>
+</ul>
+<p>通过将矩阵写为$Av_i&#x3D;\sigma_iu_i$形式，将矩阵对角化，向量$u,\ v$之间没有耦合，$A$乘以每个$v$都能得到一个相应的$u$。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg29/" rel="prev" title="MIT线性代数29">
+                  <i class="fa fa-angle-left"></i> MIT线性代数29
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg31/" rel="next" title="MIT线性代数31">
+                  MIT线性代数31 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Daniel Liu</span>
+  </div>
+  <div class="powered-by">
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

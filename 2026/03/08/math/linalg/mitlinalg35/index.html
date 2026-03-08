@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="第三十五讲：期末复习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT线性代数35">
+<meta property="og:url" content="http://example.com/2026/03/08/math/linalg/mitlinalg35/index.html">
+<meta property="og:site_name" content="Eyphka">
+<meta property="og:description" content="第三十五讲：期末复习">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/math/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/mit/chapter35_1_0.png">
+<meta property="article:published_time" content="2026-03-08T04:23:22.103Z">
+<meta property="article:modified_time" content="2026-03-08T05:16:25.414Z">
+<meta property="article:author" content="Daniel Liu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/math/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/mit/chapter35_1_0.png">
+
+
+<link rel="canonical" href="http://example.com/2026/03/08/math/linalg/mitlinalg35/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/03/08/math/linalg/mitlinalg35/","path":"2026/03/08/math/linalg/mitlinalg35/","title":"MIT线性代数35"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MIT线性代数35 | Eyphka</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.1/pdfobject.min.js","integrity":"sha256-jI72I8ZLVflVOisZIOaLvRew3tyvzeu6aZXFm7P7dEo="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js" defer></script>
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Eyphka</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%8D%81%E4%BA%94%E8%AE%B2%EF%BC%9A%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">第三十五讲：期末复习</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MIT%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E5%85%A8%E9%83%A8%E8%AF%BE%E7%A8%8B%E5%88%B0%E6%AD%A4%E7%BB%93%E6%9D%9F"><span class="nav-number">2.</span> <span class="nav-text">MIT线性代数的全部课程到此结束</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Daniel Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/08/math/linalg/mitlinalg35/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Daniel Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eyphka">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MIT线性代数35 | Eyphka">
+      <meta itemprop="description" content="第三十五讲：期末复习">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MIT线性代数35
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-03-08 12:23:22 / Modified: 13:16:25" itemprop="dateCreated datePublished" datetime="2026-03-08T12:23:22+08:00">2026-03-08</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">第三十五讲：期末复习</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="第三十五讲：期末复习"><a href="#第三十五讲：期末复习" class="headerlink" title="第三十五讲：期末复习"></a>第三十五讲：期末复习</h1><p>依然是从以往的试题入手复习知识点。</p>
+<ol>
+<li><p><em>已知$m\times n$矩阵$A$，有$Ax&#x3D;\begin{bmatrix}1\\0\\0\end{bmatrix}$无解；$Ax&#x3D;\begin{bmatrix}0\\1\\0\end{bmatrix}$仅有唯一解，求关于$m,n,rank(A)$的信息。</em></p>
+<p> 首先，最容易判断的是$m&#x3D;3$；而根据第一个条件可知，矩阵不满秩，有$r&lt;m$；根据第二个条件可知，零空间仅有零向量，也就是矩阵消元后没有自由变量，列向量线性无关，所以有$r&#x3D;n$。</p>
+<p> 综上，有$m&#x3D;3&gt;n&#x3D;r$。</p>
+<p> <em>根据所求写出一个矩阵$A$的特例</em>：$A&#x3D;\begin{bmatrix}0&amp;0\\1&amp;0\\0&amp;1\end{bmatrix}$。</p>
+<p> <em>$\det A^TA\stackrel{?}{&#x3D;}\det AA^T$</em>：不相等，因为$A^TA$可逆而$AA^T$不可逆，所以行列式不相等。（但是对于方阵，$\det AB&#x3D;\det BA$恒成立。）</p>
+<p> *$A^TA$可逆吗？*是，因为$r&#x3D;n$，矩阵列向量线性无关，即列满秩。</p>
+<p> *$AA^T$正定吗？*否，因为$AA^T$是$3\times n$矩阵与$n\times 3$矩阵之积，是一个三阶方阵，而$AA^T$秩为$2$，所以不是正定矩阵。（不过$AA^T$一定是半正定矩阵。）</p>
+<p> <em>求证$A^Ty&#x3D;c$至少有一个解</em>：因为$A$的列向量线性无关，所以$A^T$的行向量线性无关，消元后每行都有主元，且总有自由变量，所以零空间中有非零向量，零空间维数是$m-r$（可以直接从$\dim N\left(A^T\right)&#x3D;m-r$得到结论）。</p>
+</li>
+<li><p><em>设$A&#x3D;\Bigg[v_1\ v_2\ v_3\Bigg]$，对于$Ax&#x3D;v_1-v_2+v_3$，求$x$。</em></p>
+<p> 按列计算矩阵相乘，有$x&#x3D;\begin{bmatrix}1\\-1\\1\end{bmatrix}$。</p>
+<p> *若Ax&#x3D;v_1-v_2+v_3&#x3D;0，则解是唯一的吗？为什么。*如果解释唯一的，则零空间中只有零向量，而在此例中$x&#x3D;\begin{bmatrix}1\\-1\\1\end{bmatrix}$就在零空间中，所以解不唯一。</p>
+<p> *若$v_1,v_2,v_3$是标准正交向量，那么怎样的线性组合$c_1v_1+c_2v_2$能够最接近$v_3$？*此问是考察投影概念，由于是正交向量，所以只有$0$向量最接近$v_3$。</p>
+</li>
+<li><p><em>矩阵$A&#x3D;\begin{bmatrix}.2&amp;.4&amp;.3\\.4&amp;.2&amp;.3\\.4&amp;.4&amp;.4\end{bmatrix}$，求稳态。</em></p>
+<p> 这是个马尔科夫矩阵，前两之和为第三列的两倍，奇异矩阵总有一个特征值为$0$，而马尔科夫矩阵总有一个特征值为$1$，剩下一个特征值从矩阵的迹得知为$-.2$。</p>
+<p> 再看马尔科夫过程，设从$u(0)$开始，$u_k&#x3D;A^ku_0, u_0&#x3D;\begin{bmatrix}0\\10\\0\end{bmatrix}$。先代入特征值$\lambda_1&#x3D;0,\ \lambda_2&#x3D;1,\ \lambda_3&#x3D;-.2$查看稳态$u_k&#x3D;c_1\lambda_1^kx_1+c_2\lambda_2^kx_2+c_3\lambda_3^kx_3$，当$k\to\infty$，第一项与第三项都会消失，剩下$u_\infty&#x3D;c_2x_2$。</p>
+<p> 到这里我们只需求出$\lambda_2$对应的特征向量即可，带入特征值求解$(A-I)x&#x3D;0$，有$\begin{bmatrix}-.8&amp;.4&amp;.3\\.4&amp;-.8&amp;.3\\.4&amp;.4&amp;-.6\end{bmatrix}\begin{bmatrix}?\\?\\?\end{bmatrix}&#x3D;\begin{bmatrix}0\\0\\0\end{bmatrix}$，可以消元得，也可以直接观察得到$x_2&#x3D;\begin{bmatrix}3\\3\\4\end{bmatrix}$。</p>
+<p> 剩下就是求$c_2$了，可以通过$u_0$一一解出每个系数，但是这就需要解出每一个特征值。另一种方法，我们可以通过马尔科夫矩阵的特性知道，对于马尔科夫过程的每一个$u_k$都有其分量之和与初始值分量之和相等，所以对于$x_2&#x3D;\begin{bmatrix}3\\3\\4\end{bmatrix}$，有$c_2&#x3D;1$。所以最终结果是$u_\infty&#x3D;\begin{bmatrix}3\\3\\4\end{bmatrix}$。</p>
+</li>
+<li><p><em>对于二阶方阵，回答以下问题：</em></p>
+<p> <em>求投影在直线$a&#x3D;\begin{bmatrix}4\\-3\end{bmatrix}$上的投影矩阵</em>：应为$P&#x3D;\frac{aa^T}{a^Ta}$。</p>
+<p> <em>已知特征值$\lambda_1&#x3D;2,\ x_1&#x3D;\begin{bmatrix}1\\2\end{bmatrix}\quad \lambda_2&#x3D;3,\ x_2&#x3D;\begin{bmatrix}2\\1\end{bmatrix}$求原矩阵$A$</em>：从对角化公式得$A&#x3D;S\Lambda S^{-1}&#x3D;\begin{bmatrix}1&amp;2\\2&amp;1\end{bmatrix}\begin{bmatrix}0&amp;0\\0&amp;3\end{bmatrix}\begin{bmatrix}1&amp;2\\2&amp;1\end{bmatrix}^{-1}$，解之即可。</p>
+<p> <em>$A$是一个实矩阵，且对任意矩阵$B$，$A$都不能分解成$A&#x3D;B^TB$，给出$A$的一个例子</em>：我们知道$B^TB$是对称的，所以给出一个非对称矩阵即可。<br> <em>矩阵$A$有正交的特征向量，但不是对称的，给出一个$A$的例子</em>：我们在三十三讲提到过，反对称矩阵，因为满足$AA^T&#x3D;A^TA$而同样具有正交的特征向量，所以有$A&#x3D;\begin{bmatrix}0&amp;1\\-1&amp;0\end{bmatrix}$或旋转矩阵$\begin{bmatrix}\cos\theta&amp;-\sin\theta\\\sin\theta&amp;\cos\theta\end{bmatrix}$，这些矩阵都具有复数域上的正交特征向量组。</p>
+</li>
+<li><p><em>最小二乘问题，因为时间的关系直接写出计算式和答案，$\begin{bmatrix}1&amp;0\\1&amp;1\\1&amp;2\end{bmatrix}\begin{bmatrix}C\\D\end{bmatrix}&#x3D;\begin{bmatrix}3\\4\\1\end{bmatrix}(Ax&#x3D;b)$，解得$\begin{bmatrix}\hat C\\\hat D\end{bmatrix}&#x3D;\begin{bmatrix}\frac{11}{3}\\-1\end{bmatrix}$。</em></p>
+<p> <em>求投影后的向量$p$</em>：向量$p$就是向量$b$在矩阵$A$列空间中的投影，所以$p&#x3D;\begin{bmatrix}p_1\\p_2\\p_3\end{bmatrix}&#x3D;\begin{bmatrix}1&amp;0\\1&amp;1\\1&amp;2\end{bmatrix}\begin{bmatrix}\hat C\\\hat D\end{bmatrix}$。</p>
+<p> <em>求拟合直线的图像</em>：$x&#x3D;0,1,2$时$y&#x3D;p_1,p_2,p_2$所在的直线的图像，$y&#x3D;\hat C+\hat Dx$即$y&#x3D;\frac{11}{3}-x$。</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"></span><br><span class="line">x = np.array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>]).reshape((-<span class="number">1</span>,<span class="number">1</span>))</span><br><span class="line">y = np.array([<span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>]).reshape((-<span class="number">1</span>,<span class="number">1</span>))</span><br><span class="line">predict_line = np.array([-<span class="number">1</span>, <span class="number">4</span>]).reshape((-<span class="number">1</span>,<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">regr = linear_model.LinearRegression()</span><br><span class="line">regr.fit(x, y)</span><br><span class="line">ey = regr.predict(x)</span><br><span class="line"></span><br><span class="line">fig = plt.figure()</span><br><span class="line">plt.axis(<span class="string">&#x27;equal&#x27;</span>)</span><br><span class="line">plt.axhline(y=<span class="number">0</span>, c=<span class="string">&#x27;black&#x27;</span>)</span><br><span class="line">plt.axvline(x=<span class="number">0</span>, c=<span class="string">&#x27;black&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.scatter(x, y, c=<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">plt.scatter(x, regr.predict(x), s=<span class="number">20</span>, c=<span class="string">&#x27;b&#x27;</span>)</span><br><span class="line">plt.plot(predict_line, regr.predict(predict_line), c=<span class="string">&#x27;g&#x27;</span>, lw=<span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">[ plt.plot([x[i], x[i]], [y[i], ey[i]], <span class="string">&#x27;r&#x27;</span>, lw=<span class="string">&#x27;1&#x27;</span>) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(x))]</span><br><span class="line"></span><br><span class="line">plt.draw()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/img/math/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/mit/chapter35_1_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.close(fig)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>接上面的题目</p>
+<p>  <em>求一个向量$b$使得最小二乘求得的$\begin{bmatrix}\hat C\\\hat D\end{bmatrix}&#x3D;\begin{bmatrix}0\\0\end{bmatrix}$</em>：我们知道最小二乘求出的向量$\begin{bmatrix}\hat C\\\hat D\end{bmatrix}$使得$A$列向量的线性组合最接近$b$向量（即$b$在$A$列空间中的投影），如果这个线性组合为$0$向量（即投影为$0$），则$b$向量与$A$的列空间正交，所以可以取$b&#x3D;\begin{bmatrix}1\\-2\\1\end{bmatrix}$同时正交于$A$的两个列向量。</p>
+</li>
+</ul>
+<h1 id="MIT线性代数的全部课程到此结束"><a href="#MIT线性代数的全部课程到此结束" class="headerlink" title="MIT线性代数的全部课程到此结束"></a>MIT线性代数的全部课程到此结束</h1>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/hm/9/" rel="prev" title="高等数学-9">
+                  <i class="fa fa-angle-left"></i> 高等数学-9
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg05/" rel="next" title="MIT线性代数05">
+                  MIT线性代数05 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Daniel Liu</span>
+  </div>
+  <div class="powered-by">
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

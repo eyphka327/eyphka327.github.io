@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="第二十七讲：复数矩阵和快速傅里叶变换">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT线性代数27">
+<meta property="og:url" content="http://example.com/2026/03/08/math/linalg/mitlinalg27/index.html">
+<meta property="og:site_name" content="Eyphka">
+<meta property="og:description" content="第二十七讲：复数矩阵和快速傅里叶变换">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-08T04:23:22.287Z">
+<meta property="article:modified_time" content="2026-03-08T05:04:10.770Z">
+<meta property="article:author" content="Daniel Liu">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/03/08/math/linalg/mitlinalg27/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/03/08/math/linalg/mitlinalg27/","path":"2026/03/08/math/linalg/mitlinalg27/","title":"MIT线性代数27"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MIT线性代数27 | Eyphka</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.1/pdfobject.min.js","integrity":"sha256-jI72I8ZLVflVOisZIOaLvRew3tyvzeu6aZXFm7P7dEo="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js" defer></script>
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Eyphka</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%83%E8%AE%B2%EF%BC%9A%E5%A4%8D%E6%95%B0%E7%9F%A9%E9%98%B5%E5%92%8C%E5%BF%AB%E9%80%9F%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">第二十七讲：复数矩阵和快速傅里叶变换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E6%95%B0%E7%9F%A9%E9%98%B5%E8%BF%90%E7%AE%97"><span class="nav-number">1.1.</span> <span class="nav-text">复数矩阵运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E5%A4%8D%E5%90%91%E9%87%8F%E7%9A%84%E6%A8%A1"><span class="nav-number">1.1.1.</span> <span class="nav-text">计算复向量的模</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E5%90%91%E9%87%8F%E7%9A%84%E5%86%85%E7%A7%AF"><span class="nav-number">1.1.2.</span> <span class="nav-text">计算向量的内积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E7%A7%B0%E6%80%A7"><span class="nav-number">1.1.3.</span> <span class="nav-text">对称性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E4%BA%A4%E6%80%A7"><span class="nav-number">1.1.4.</span> <span class="nav-text">正交性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%82%85%E9%87%8C%E5%8F%B6%E7%9F%A9%E9%98%B5"><span class="nav-number">1.2.</span> <span class="nav-text">傅里叶矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%EF%BC%88Fast-Fourier-transform-FFT%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">快速傅里叶变换（Fast Fourier transform&#x2F;FFT）</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Daniel Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/08/math/linalg/mitlinalg27/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Daniel Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eyphka">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MIT线性代数27 | Eyphka">
+      <meta itemprop="description" content="第二十七讲：复数矩阵和快速傅里叶变换">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MIT线性代数27
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-03-08 12:23:22 / Modified: 13:04:10" itemprop="dateCreated datePublished" datetime="2026-03-08T12:23:22+08:00">2026-03-08</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">第二十七讲：复数矩阵和快速傅里叶变换</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="第二十七讲：复数矩阵和快速傅里叶变换"><a href="#第二十七讲：复数矩阵和快速傅里叶变换" class="headerlink" title="第二十七讲：复数矩阵和快速傅里叶变换"></a>第二十七讲：复数矩阵和快速傅里叶变换</h1><p>本讲主要介绍复数向量、复数矩阵的相关知识（包括如何做复数向量的点积运算、什么是复数对称矩阵等），以及傅里叶矩阵（最重要的复数矩阵）和快速傅里叶变换。</p>
+<h2 id="复数矩阵运算"><a href="#复数矩阵运算" class="headerlink" title="复数矩阵运算"></a>复数矩阵运算</h2><p>先介绍复数向量，我们不妨换一个字母符号来表示：$z&#x3D;\begin{bmatrix}z_1\\z_2\\\vdots\\z_n\end{bmatrix}$，向量的每一个分量都是复数。此时$z$不再属于$\mathbb{R}^n$实向量空间，它现在处于$\mathbb{C}^n$复向量空间。</p>
+<h3 id="计算复向量的模"><a href="#计算复向量的模" class="headerlink" title="计算复向量的模"></a>计算复向量的模</h3><p>对比实向量，我们计算模只需要计算$\left|v\right|&#x3D;\sqrt{v^Tv}$即可，而如果对复向量使用$z^Tz$则有$z^Tz&#x3D;\begin{bmatrix}z_1&amp;z_2&amp;\cdots&amp;z_n\end{bmatrix}\begin{bmatrix}z_1\\z_2\\\vdots\\z_n\end{bmatrix}&#x3D;z_1^2+z_2^2+\cdots+z_n^2$，这里$z_i$是复数，平方后虚部为负，求模时本应相加的运算变成了减法。（如向量$\begin{bmatrix}1&amp;i\end{bmatrix}$，右乘其转置后结果为$0$，但此向量的长度显然不是零。）</p>
+<p>根据上一讲我们知道，应使用$\left|z\right|&#x3D;\sqrt{\bar{z}^Tz}$，即$\begin{bmatrix}\bar z_1&amp;\bar z_2&amp;\cdots&amp;\bar z_n\end{bmatrix}\begin{bmatrix}z_1\\z_2\\\vdots\\z_n\end{bmatrix}$，即使用向量共轭的转置乘以原向量即可。（如向量$\begin{bmatrix}1&amp;i\end{bmatrix}$，右乘其共轭转置后结果为$\begin{bmatrix}1&amp;-i\end{bmatrix}\begin{bmatrix}1\\i\end{bmatrix}&#x3D;2$。）</p>
+<p>我们把共轭转置乘以原向量记为$z^Hz$，$H$读作埃尔米特（人名为Hermite，形容词为Hermitian）</p>
+<h3 id="计算向量的内积"><a href="#计算向量的内积" class="headerlink" title="计算向量的内积"></a>计算向量的内积</h3><p>有了复向量模的计算公式，同理可得，对于复向量，内积不再是实向量的$y^Tx$形式，复向量内积应为$y^Hx$。</p>
+<h3 id="对称性"><a href="#对称性" class="headerlink" title="对称性"></a>对称性</h3><p>对于实矩阵，$A^T&#x3D;A$即可表达矩阵的对称性。而对于复矩阵，我们同样需要求一次共轭$\bar{A}^T&#x3D;A$。举个例子$\begin{bmatrix}2&amp;3+i\\3-i&amp;5\end{bmatrix}$是一个复数情况下的对称矩阵。这叫做埃尔米特矩阵，有性质$A^H&#x3D;A$。</p>
+<h3 id="正交性"><a href="#正交性" class="headerlink" title="正交性"></a>正交性</h3><p>在第十七讲中，我们这样定义标准正交向量：$q_i^Tq_j&#x3D;\begin{cases}0\quad i\neq j\\1\quad i&#x3D;j\end{cases}$。现在，对于复向量我们需要求共轭：$\bar{q}_i^Tq_j&#x3D;q_i^Hq_j&#x3D;\begin{cases}0\quad i\neq j\\1\quad i&#x3D;j\end{cases}$。</p>
+<p>第十七讲中的标准正交矩阵：$Q&#x3D;\Bigg[q_1\ q_2\ \cdots\ q_n\Bigg]$有$Q^TQ&#x3D;I$。现在对于复矩阵则有$Q^HQ&#x3D;I$。</p>
+<p>就像人们给共轭转置起了个“埃尔米特”这个名字一样，正交性（orthogonal）在复数情况下也有了新名字，酉（unitary），酉矩阵（unitary matrix）与正交矩阵类似，满足$Q^HQ&#x3D;I$的性质。而前面提到的傅里叶矩阵就是一个酉矩阵。</p>
+<h2 id="傅里叶矩阵"><a href="#傅里叶矩阵" class="headerlink" title="傅里叶矩阵"></a>傅里叶矩阵</h2><p>$n$阶傅里叶矩阵$F_n&#x3D;\begin{bmatrix}1&amp;1&amp;1&amp;\cdots&amp;1\\1&amp;w&amp;w^2&amp;\cdots&amp;w^{n-1}\\1&amp;w^2&amp;w^4&amp;\cdots&amp;w^{2(n-1)}\\\vdots&amp;\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\1&amp;w^{n-1}&amp;w^{2(n-1)}&amp;\cdots&amp;w^{(n-1)^2}\end{bmatrix}$，对于每一个元素有$(F_n)_{ij}&#x3D;w^{ij}\quad i,j&#x3D;0,1,2,\cdots,n-1$。矩阵中的$w$是一个非常特殊的值，满足$w^n&#x3D;1$，其公式为$w&#x3D;e^{i2\pi&#x2F;n}$。易知$w$在复平面的单位圆上，$w&#x3D;\cos\frac{2\pi}{n}+i\sin\frac{2\pi}{n}$。</p>
+<p>在傅里叶矩阵中，当我们计算$w$的幂时，$w$在单位圆上的角度翻倍。比如在$6$阶情形下，$w&#x3D;e^{2\pi&#x2F;6}$，即位于单位圆上$60^\circ$角处，其平方位于单位圆上$120^\circ$角处，而$w^6$位于$1$处。从开方的角度看，它们是$1$的$6$个六次方根，而一次的$w$称为原根。</p>
+<ul>
+<li><p>我们现在来看$4$阶傅里叶矩阵，先计算$w$有$w&#x3D;i,\ w^2&#x3D;-1,\ w^3&#x3D;-i,\ w^4&#x3D;1$，$F_4&#x3D;\begin{bmatrix}1&amp;1&amp;1&amp;1\\1&amp;i&amp;i^2&amp;i^3\\1&amp;i^2&amp;i^4&amp;i^6\\1&amp;i^3&amp;i^6&amp;i^9\end{bmatrix}&#x3D;\begin{bmatrix}1&amp;1&amp;1&amp;1\\1&amp;i&amp;-1&amp;-i\\1&amp;-1&amp;1&amp;-1\\1&amp;-i&amp;-1&amp;i\end{bmatrix}$。</p>
+<p>  矩阵的四个列向量正交，我们验证一下第二列和第四列，$\bar{c_2}^Tc_4&#x3D;1-0+1-0&#x3D;0$，正交。不过我们应该注意到，$F_4$的列向量并不是标准的，我们可以给矩阵乘上系数$\frac{1}{2}$（除以列向量的长度）得到标准正交矩阵$F_4&#x3D;\frac{1}{2}\begin{bmatrix}1&amp;1&amp;1&amp;1\\1&amp;i&amp;-1&amp;-i\\1&amp;-1&amp;1&amp;-1\\1&amp;-i&amp;-1&amp;i\end{bmatrix}$。此时有$F_4^HF_4&#x3D;I$，于是该矩阵的逆矩阵也就是其共轭转置$F_4^H$。</p>
+</li>
+</ul>
+<h2 id="快速傅里叶变换（Fast-Fourier-transform-FFT）"><a href="#快速傅里叶变换（Fast-Fourier-transform-FFT）" class="headerlink" title="快速傅里叶变换（Fast Fourier transform&#x2F;FFT）"></a>快速傅里叶变换（Fast Fourier transform&#x2F;FFT）</h2><p>对于傅里叶矩阵，$F_6,\ F_3$、$F_8,\ F_4$、$F_{64},\ F_{32}$之间有着特殊的关系。</p>
+<p>举例，有傅里叶矩阵$F_64$，一般情况下，用一个列向量右乘$F_{64}$需要约$64^2$次计算，显然这个计算量是比较大的。我们想要减少计算量，于是想要分解$F_{64}$，联系到$F_{32}$，有$\Bigg[F_{64}\Bigg]&#x3D;\begin{bmatrix}I&amp;D\\I&amp;-D\end{bmatrix}\begin{bmatrix}F_{32}&amp;0\\0&amp;F_{32}\end{bmatrix}\begin{bmatrix}1&amp;&amp;\cdots&amp;&amp;&amp;0&amp;&amp;\cdots&amp;&amp;\\0&amp;&amp;\cdots&amp;&amp;&amp;1&amp;&amp;\cdots&amp;&amp;\\&amp;1&amp;\cdots&amp;&amp;&amp;&amp;0&amp;\cdots&amp;&amp;\\&amp;0&amp;\cdots&amp;&amp;&amp;&amp;1&amp;\cdots&amp;&amp;\\&amp;&amp;&amp;\ddots&amp;&amp;&amp;&amp;&amp;\ddots&amp;&amp;\\&amp;&amp;&amp;\ddots&amp;&amp;&amp;&amp;&amp;\ddots&amp;&amp;\\&amp;&amp;&amp;\cdots&amp;1&amp;&amp;&amp;&amp;\cdots&amp;0\\&amp;&amp;&amp;\cdots&amp;0&amp;&amp;&amp;&amp;\cdots&amp;1\end{bmatrix}$。</p>
+<p>我们分开来看等式右侧的这三个矩阵：</p>
+<ul>
+<li><p>第一个矩阵由单位矩阵$I$和对角矩阵$D&#x3D;\begin{bmatrix}1&amp;&amp;&amp;&amp;\\&amp;w&amp;&amp;&amp;\\&amp;&amp;w^2&amp;&amp;\\&amp;&amp;&amp;\ddots&amp;\\&amp;&amp;&amp;&amp;w^{31}\end{bmatrix}$组成，我们称这个矩阵为修正矩阵，显然其计算量来自$D$矩阵，对角矩阵的计算量约为$32$即这个修正矩阵的计算量约为$32$，单位矩阵的计算量忽略不计。</p>
+</li>
+<li><p>第二个矩阵是两个$F_{32}$与零矩阵组成的，计算量约为$2\times 32^2$。</p>
+</li>
+<li><p>第三个矩阵通常记为$P$矩阵，这是一个置换矩阵，其作用是讲前一个矩阵中的奇数列提到偶数列之前，将前一个矩阵从$\Bigg[x_0\ x_1\ \cdots\Bigg]$变为$\Bigg[x_0\ x_2\ \cdots\ x_1\ x_3\ \cdots\Bigg]$，这个置换矩阵的计算量也可以忽略不计。（这里教授似乎在黑板上写错了矩阵，可以参考<a target="_blank" rel="noopener" href="https://math.berkeley.edu/~berlek/classes/CLASS.110/LECTURES/FFT">FFT</a>、<a target="_blank" rel="noopener" href="http://vmm.math.uci.edu/ODEandCM/PDF_Files/FFT_Appendix_K.pdf">How the FFT is computed</a>做进一步讨论。）</p>
+</li>
+</ul>
+<p>所以我们把$64^2$复杂度的计算化简为$2\times 32^2+32$复杂度的计算，我们可以进一步化简$F_{32}$得到与$F_{16}$有关的式子$\begin{bmatrix}I_{32}&amp;D_{32}\\I_{32}&amp;-D_{32}\end{bmatrix}\begin{bmatrix}I_{16}&amp;D_{16}&amp;&amp;\\I_{16}&amp;-D_{16}&amp;&amp;\\&amp;&amp;I_{16}&amp;D_{16}\\&amp;&amp;I_{16}&amp;-D_{16}\end{bmatrix}\begin{bmatrix}F_{16}&amp;&amp;&amp;\\&amp;F_{16}&amp;&amp;\\&amp;&amp;F_{16}&amp;\\&amp;&amp;&amp;F_{16}\end{bmatrix}\begin{bmatrix}P_{16}&amp;\\&amp;P_{16}\end{bmatrix}\Bigg[\ P_{32}\ \Bigg]$。而$32^2$的计算量进一步分解为$2\times 16^2+16$的计算量，如此递归下去我们最终得到含有一阶傅里叶矩阵的式子。</p>
+<p>来看化简后计算量，$2\left(2\left(2\left(2\left(2\left(2\left(1\right)^2+1\right)+2\right)+4\right)+8\right)+16\right)+32$，约为$6\times 32&#x3D;\log_264\times \frac{64}{2}$，算法复杂度为$\frac{n}{2}\log_2n$。</p>
+<p>于是原来需要$n^2$的运算现在只需要$\frac{n}{2}\log_2n$就可以实现了。不妨看看$n&#x3D;10$的情况，不使用FFT时需要$n^2&#x3D;1024\times 1024$次运算，使用FFT时只需要$\frac{n}{2}\log_2n&#x3D;5\times 1024$次运算，运算量大约是原来的$\frac{1}{200}$。</p>
+<p>下一讲将继续介绍特征值、特征向量及正定矩阵。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg26/" rel="prev" title="MIT线性代数26">
+                  <i class="fa fa-angle-left"></i> MIT线性代数26
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg28/" rel="next" title="MIT线性代数28">
+                  MIT线性代数28 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Daniel Liu</span>
+  </div>
+  <div class="powered-by">
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

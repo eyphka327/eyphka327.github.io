@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="第十一讲：矩阵空间、秩1矩阵和小世界图第十讲：四个基本子空间">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT线性代数11">
+<meta property="og:url" content="http://example.com/2026/03/08/math/linalg/mitlinalg11/index.html">
+<meta property="og:site_name" content="Eyphka">
+<meta property="og:description" content="第十一讲：矩阵空间、秩1矩阵和小世界图第十讲：四个基本子空间">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-08T04:23:22.159Z">
+<meta property="article:modified_time" content="2026-03-08T04:57:52.885Z">
+<meta property="article:author" content="Daniel Liu">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/03/08/math/linalg/mitlinalg11/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/03/08/math/linalg/mitlinalg11/","path":"2026/03/08/math/linalg/mitlinalg11/","title":"MIT线性代数11"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MIT线性代数11 | Eyphka</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.1/pdfobject.min.js","integrity":"sha256-jI72I8ZLVflVOisZIOaLvRew3tyvzeu6aZXFm7P7dEo="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js" defer></script>
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Eyphka</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E8%AE%B2%EF%BC%9A%E7%9F%A9%E9%98%B5%E7%A9%BA%E9%97%B4%E3%80%81%E7%A7%A91%E7%9F%A9%E9%98%B5%E5%92%8C%E5%B0%8F%E4%B8%96%E7%95%8C%E5%9B%BE"><span class="nav-number">1.</span> <span class="nav-text">第十一讲：矩阵空间、秩1矩阵和小世界图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E7%A9%BA%E9%97%B4"><span class="nav-number">1.1.</span> <span class="nav-text">矩阵空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%A9%E4%B8%80%E7%9F%A9%E9%98%B5"><span class="nav-number">1.2.</span> <span class="nav-text">秩一矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E4%B8%96%E7%95%8C%E5%9B%BE"><span class="nav-number">1.3.</span> <span class="nav-text">小世界图</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Daniel Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/08/math/linalg/mitlinalg11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Daniel Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eyphka">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MIT线性代数11 | Eyphka">
+      <meta itemprop="description" content="第十一讲：矩阵空间、秩1矩阵和小世界图第十讲：四个基本子空间">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MIT线性代数11
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-03-08 12:23:22 / Modified: 12:57:52" itemprop="dateCreated datePublished" datetime="2026-03-08T12:23:22+08:00">2026-03-08</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">第十一讲：矩阵空间、秩1矩阵和小世界图第十讲：四个基本子空间</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="第十一讲：矩阵空间、秩1矩阵和小世界图"><a href="#第十一讲：矩阵空间、秩1矩阵和小世界图" class="headerlink" title="第十一讲：矩阵空间、秩1矩阵和小世界图"></a>第十一讲：矩阵空间、秩1矩阵和小世界图</h1><h2 id="矩阵空间"><a href="#矩阵空间" class="headerlink" title="矩阵空间"></a>矩阵空间</h2><p>接上一讲，使用$3 \times 3$矩阵举例，其矩阵空间记为$M$。</p>
+<p>则$M$的一组基为：<br>$$<br>\begin{bmatrix}<br>1 &amp; 0 &amp; 0 \\<br>0 &amp; 0 &amp; 0 \\<br>0 &amp; 0 &amp; 0 \\<br>\end{bmatrix}<br>\begin{bmatrix}<br>0 &amp; 1 &amp; 0 \\<br>0 &amp; 0 &amp; 0 \\<br>0 &amp; 0 &amp; 0 \\<br>\end{bmatrix}<br>\begin{bmatrix}<br>0 &amp; 0 &amp; 1 \\<br>0 &amp; 0 &amp; 0 \\<br>0 &amp; 0 &amp; 0 \\<br>\end{bmatrix} \\<br>\begin{bmatrix}<br>0 &amp; 0 &amp; 0 \\<br>1 &amp; 0 &amp; 0 \\<br>0 &amp; 0 &amp; 0 \\<br>\end{bmatrix}<br>\begin{bmatrix}<br>0 &amp; 0 &amp; 0 \\<br>0 &amp; 1 &amp; 0 \\<br>0 &amp; 0 &amp; 0 \\<br>\end{bmatrix}<br>\begin{bmatrix}<br>0 &amp; 0 &amp; 0 \\<br>0 &amp; 0 &amp; 1 \\<br>0 &amp; 0 &amp; 0 \\<br>\end{bmatrix} \\<br>\begin{bmatrix}<br>0 &amp; 0 &amp; 0 \\<br>0 &amp; 0 &amp; 0 \\<br>1 &amp; 0 &amp; 0 \\<br>\end{bmatrix}<br>\begin{bmatrix}<br>0 &amp; 0 &amp; 0 \\<br>0 &amp; 0 &amp; 0 \\<br>0 &amp; 1 &amp; 0 \\<br>\end{bmatrix}<br>\begin{bmatrix}<br>0 &amp; 0 &amp; 0 \\<br>0 &amp; 0 &amp; 0 \\<br>0 &amp; 0 &amp; 1 \\<br>\end{bmatrix} \\<br>$$</p>
+<p>易得，$dim M&#x3D;9$。</p>
+<p>所以可以得出，对上讲中的三阶对称矩阵空间有$dim S&#x3D;6$、上三角矩阵空间有$dim U&#x3D;6$、对角矩阵空间有$dim D&#x3D;3$</p>
+<p>求并（intersect）：$S \cup U&#x3D;D, dim(S \cup U)&#x3D;9$；</p>
+<p>求交（sum）：$S \cap U&#x3D;M, dim(S \cap U)&#x3D;3$；</p>
+<p>可以看出：$dim S + dim U&#x3D;12&#x3D;dim(S \cup U) + dim(S \cap U)$。</p>
+<p>另一个例子来自微分方程：</p>
+<p>$\frac{d^2y}{dx^2}+y&#x3D;0$，即$y’’+y&#x3D;0$</p>
+<p>方程的解有：$y&#x3D;\cos{x}, \quad y&#x3D;\sin{x}, \quad y&#x3D;e^{ix}, \quad y&#x3D;e^{-ix}$等等（$e^{ix}&#x3D;\cos{x}+i\sin{x}, \quad e^{-ix}&#x3D;\cos{x}-i\sin{x}$）</p>
+<p>而该方程的所有解：$y&#x3D;c_1 \cos{x} + c_2 \sin{x}$。</p>
+<p>所以，该方程的零空间的一组基为$\cos{x}, \sin{x}$，零空间的维数为$2$。同理$e^{ix}, e^{-ix}$可以作为另一组基。</p>
+<h2 id="秩一矩阵"><a href="#秩一矩阵" class="headerlink" title="秩一矩阵"></a>秩一矩阵</h2><p>$2 \times 3$矩阵$A&#x3D;\begin{bmatrix}1&amp;4&amp;5\\2&amp;8&amp;10\end{bmatrix}&#x3D;\begin{bmatrix}1\\2\end{bmatrix}\begin{bmatrix}1&amp;4&amp;5\end{bmatrix}$。</p>
+<p>且$dimC(A)&#x3D;1&#x3D;dimC(A^T)$，所有的秩一矩阵都可以划为$A&#x3D;UV^T$的形式，这里的$U, V$均为列向量。</p>
+<p>秩一矩阵类似“积木”，可以搭建任何矩阵，如对于一个$5 \times 17$秩为$4$的矩阵，只需要$4$个秩一矩阵就可以组合出来。</p>
+<p>令$M$代表所有$5 \times 17$，$M$中所有秩$4$矩阵组成的集合并不是一个子空间，通常两个秩四矩阵相加，其结果并不是秩四矩阵。</p>
+<p>现在，在$\mathbb{R}^4$空间中有向量$v&#x3D;\begin{bmatrix}v_1\\v_2\\v_3\\v_4\end{bmatrix}$，取$\mathbb{R}^4$中满足$v_1+v_2+v_3+v_4&#x3D;0$的所有向量组成一个向量空间$S$，则$S$是一个向量子空间。</p>
+<p>易看出，不论是使用系数乘以该向量，或是用两个满足条件的向量相加，其结果仍然落在分量和为零的向量空间中。</p>
+<p>求$S$的维数：</p>
+<p>从另一个角度看，$v_1+v_2+v_3+v_4&#x3D;0$等价于$\begin{bmatrix}1&amp;1&amp;1&amp;1\end{bmatrix}\begin{bmatrix}v_1\\v_2\\v_3\\v_4\end{bmatrix}&#x3D;0$，则$S$就是$A&#x3D;\begin{bmatrix}1&amp;1&amp;1&amp;1\end{bmatrix}$的零空间。</p>
+<p>$rank(A)&#x3D;1$，则对其零空间有$rank(N(A))&#x3D;n-r&#x3D;3&#x3D;dim N(A)$，则$S$的维数是$3$。</p>
+<p>顺便看一下$1 \times 4$矩阵$A$的四个基本子空间：</p>
+<p>行空间：$dim C(A^T)&#x3D;1$，其中的一组基是$\begin{bmatrix}1\\1\\1\\1\end{bmatrix}$；</p>
+<p>零空间：$dim N(A)&#x3D;3$，其中的一组基是$\begin{bmatrix}-1\\1\\0\\0\end{bmatrix}\begin{bmatrix}-1\\0\\1\\0\end{bmatrix}\begin{bmatrix}-1\\0\\0\\1\end{bmatrix}$</p>
+<p>列空间：$dim C(A)&#x3D;1$，其中一组基是$\begin{bmatrix}1\end{bmatrix}$，可以看出列空间就是整个$\mathbb{R}^1$空间。</p>
+<p>左零空间：$dim N(A^T)&#x3D;0$，因为$A$转置后没有非零的$v$可以使$Av&#x3D;0$成立，就是$\begin{bmatrix}0\end{bmatrix}$。</p>
+<p>综上，$dim C(A^T)+dim N(A)&#x3D;4&#x3D;n, dim C(A)+dim N(A^T)&#x3D;1&#x3D;m$</p>
+<h2 id="小世界图"><a href="#小世界图" class="headerlink" title="小世界图"></a>小世界图</h2><p>图（graph）由节点（node）与边（edge）组成。</p>
+<p>假设，每个人是图中的一个节点，如果两个人为朋友关系，则在这两个人的节点间添加一条边，通常来说，从一个节点到另一个节点只需要不超过$6$步（即六条边）即可到达。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg10/" rel="prev" title="MIT线性代数10">
+                  <i class="fa fa-angle-left"></i> MIT线性代数10
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg12/" rel="next" title="MIT线性代数12">
+                  MIT线性代数12 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Daniel Liu</span>
+  </div>
+  <div class="powered-by">
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

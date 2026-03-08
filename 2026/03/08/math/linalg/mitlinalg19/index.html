@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="第十九讲：行列式公式和代数余子式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT线性代数19">
+<meta property="og:url" content="http://example.com/2026/03/08/math/linalg/mitlinalg19/index.html">
+<meta property="og:site_name" content="Eyphka">
+<meta property="og:description" content="第十九讲：行列式公式和代数余子式">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-08T04:23:22.223Z">
+<meta property="article:modified_time" content="2026-03-08T04:57:45.581Z">
+<meta property="article:author" content="Daniel Liu">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/03/08/math/linalg/mitlinalg19/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/03/08/math/linalg/mitlinalg19/","path":"2026/03/08/math/linalg/mitlinalg19/","title":"MIT线性代数19"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MIT线性代数19 | Eyphka</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.1/pdfobject.min.js","integrity":"sha256-jI72I8ZLVflVOisZIOaLvRew3tyvzeu6aZXFm7P7dEo="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js" defer></script>
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Eyphka</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B9%9D%E8%AE%B2%EF%BC%9A%E8%A1%8C%E5%88%97%E5%BC%8F%E5%85%AC%E5%BC%8F%E5%92%8C%E4%BB%A3%E6%95%B0%E4%BD%99%E5%AD%90%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">第十九讲：行列式公式和代数余子式</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Daniel Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/08/math/linalg/mitlinalg19/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Daniel Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eyphka">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MIT线性代数19 | Eyphka">
+      <meta itemprop="description" content="第十九讲：行列式公式和代数余子式">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MIT线性代数19
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-03-08 12:23:22 / Modified: 12:57:45" itemprop="dateCreated datePublished" datetime="2026-03-08T12:23:22+08:00">2026-03-08</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">第十九讲：行列式公式和代数余子式</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="第十九讲：行列式公式和代数余子式"><a href="#第十九讲：行列式公式和代数余子式" class="headerlink" title="第十九讲：行列式公式和代数余子式"></a>第十九讲：行列式公式和代数余子式</h1><p>上一讲中，我们从三个简单的性质扩展出了一些很好的推论，本讲将继续使用这三条基本性质：</p>
+<ol>
+<li>$\det I&#x3D;1$；</li>
+<li>交换行行列式变号；</li>
+<li>对行列式的每一行都可以单独使用线性运算，其值不变；</li>
+</ol>
+<p>我们使用这三条性质推导二阶方阵行列式：</p>
+<p>$$\begin{vmatrix}a&amp;b\\c&amp;d\end{vmatrix}&#x3D;\begin{vmatrix}a&amp;0\\c&amp;d\end{vmatrix}+\begin{vmatrix}0&amp;b\\c&amp;d\end{vmatrix}&#x3D;\begin{vmatrix}a&amp;0\\c&amp;0\end{vmatrix}+\begin{vmatrix}a&amp;0\\0&amp;d\end{vmatrix}+\begin{vmatrix}0&amp;b\\c&amp;0\end{vmatrix}+\begin{vmatrix}0&amp;b\\0&amp;d\end{vmatrix}&#x3D;ad-bc$$</p>
+<p>按照这个方法，我们继续计算三阶方阵的行列式，可以想到，我们保持第二、三行不变，将第一行拆分为个行列式之和，再将每一部分的第二行拆分为三部分，这样就得到九个行列式，再接着拆分这九个行列式的第三行，最终得到二十七个行列式。可以想象到，这些矩阵中有很多值为零的行列式，我们只需要找到不为零的行列式，求和即可。</p>
+<p>$$\begin{vmatrix}a_{11}&amp;a_{12}&amp;a_{13}\\a_{21}&amp;a_{22}&amp;a_{23}\\a_{31}&amp;a_{32}&amp;a_{33}\end{vmatrix}&#x3D;\begin{vmatrix}a_{11}&amp;0&amp;0\\0&amp;a_{22}&amp;0\\0&amp;0&amp;a_{33}\end{vmatrix}+\begin{vmatrix}a_{11}&amp;0&amp;0\\0&amp;0&amp;a_{23}\\0&amp;a_{32}&amp;0\end{vmatrix}+\begin{vmatrix}0&amp;a_{12}&amp;0\\a_{21}&amp;0&amp;0\\0&amp;0&amp;a_{33}\end{vmatrix}+\begin{vmatrix}0&amp;a_{12}&amp;0\\0&amp;0&amp;a_{23}\\a_{31}&amp;0&amp;0\end{vmatrix}+\begin{vmatrix}0&amp;0&amp;a_{13}\\a_{21}&amp;0&amp;0\\0&amp;a_{32}&amp;0\end{vmatrix}+\begin{vmatrix}0&amp;0&amp;a_{13}\\0&amp;a_{22}&amp;0\\a_{31}&amp;0&amp;0\end{vmatrix}$$</p>
+<p>$$原式&#x3D;a_{11}a_{22}a_{33}-a_{11}a_{23}a_{32}-a_{12}a_{21}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}-a_{13}a_{22}a_{31}\tag{1}$$</p>
+<p>同理，我们想继续推导出阶数更高的式子，按照上面的式子可知$n$阶行列式应该可以分解成$n!$个非零行列式（占据第一行的元素有$n$种选择，占据第二行的元素有$n-1$种选择，以此类推得$n!$）：</p>
+<p>$$\det A&#x3D;\sum_{n!} \pm a_{1\alpha}a_{2\beta}a_{3\gamma}\cdots a_{n\omega}, (\alpha, \beta, \gamma, \omega)&#x3D;P_n^n\tag{2}$$</p>
+<p>这个公式还不完全，接下来需要考虑如何确定符号：</p>
+<p>$$\begin{vmatrix}0&amp;0&amp;\overline 1&amp;\underline 1\\0&amp;\overline 1&amp;\underline 1&amp;0\\\overline 1&amp;\underline 1&amp;0&amp;0\\\underline 1&amp;0&amp;0&amp;\overline 1\end{vmatrix}$$</p>
+<ul>
+<li>观察带有下划线的元素，它们的排列是$(4,3,2,1)$，变为$(1,2,3,4)$需要两步操作，所以应取$+$；</li>
+<li>观察带有上划线的元素，它们的排列是$(3,2,1,4)$，变为$(1,2,3,4)$需要一步操作，所以应取$-$。</li>
+<li>观察其他元素，我们无法找出除了上面两种以外的排列方式，于是该行列式值为零，这是一个奇异矩阵。</li>
+</ul>
+<p>此处引入代数余子式（cofactor）的概念，它的作用是把$n$阶行列式化简为$n-1$阶行列式。</p>
+<p>于是我们把$(1)$式改写为：</p>
+<p>$$a_{11}(a_{22}a_{33}-a_{23}a_{32})+a_{12}(a_{21}a_{33}-a_{23}a_{31})+a_{13}(a_{21}a_{32}-a_{22}a_{31})$$</p>
+<p>$$\begin{vmatrix}a_{11}&amp;0&amp;0\\0&amp;a_{22}&amp;a_{23}\\0&amp;a_{32}&amp;a_{33}\end{vmatrix}+\begin{vmatrix}0&amp;a_{12}&amp;0\\a_{21}&amp;0&amp;a_{23}\\a_{31}&amp;0&amp;a_{33}\end{vmatrix}+\begin{vmatrix}0&amp;0&amp;a_{13}\\a_{21}&amp;a_{22}&amp;0\\a_{31}&amp;a_{32}&amp;0\end{vmatrix}$$</p>
+<p>于是，我们可以定义$a_{ij}$的代数余子式：将原行列式的第$i$行与第$j$列抹去后得到的$n-1$阶行列式记为$C_{ij}$，$i+j$为偶时时取$+$，$i+j$为奇时取$-$。</p>
+<p>现在再来完善式子$(2)$：将行列式$A$沿第一行展开：</p>
+<p>$$\det A&#x3D;a_{11}C_{11}+a_{12}C_{12}+\cdots+a_{1n}C_{1n}$$</p>
+<p>到现在为止，我们了解了三种求行列式的方法：</p>
+<ol>
+<li>消元，$\det A$就是主元的乘积；</li>
+<li>使用$(2)$式展开，求$n!$项之积；</li>
+<li>使用代数余子式。</li>
+</ol>
+<p>计算例题：<br>$A_4&#x3D;\begin{vmatrix}1&amp;1&amp;0&amp;0\\1&amp;1&amp;1&amp;0\\0&amp;1&amp;1&amp;1\\0&amp;0&amp;1&amp;1\end{vmatrix}\stackrel{沿第一行展开}{&#x3D;}\begin{vmatrix}1&amp;1&amp;0\\1&amp;1&amp;1\\0&amp;1&amp;1\end{vmatrix}-\begin{vmatrix}1&amp;1&amp;0\\0&amp;1&amp;1\\0&amp;1&amp;1\end{vmatrix}&#x3D;-1-0&#x3D;-1$</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg18/" rel="prev" title="MIT线性代数18">
+                  <i class="fa fa-angle-left"></i> MIT线性代数18
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg20/" rel="next" title="MIT线性代数20">
+                  MIT线性代数20 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Daniel Liu</span>
+  </div>
+  <div class="powered-by">
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

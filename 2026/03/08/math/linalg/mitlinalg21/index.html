@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="第二十一讲：特征值和特征向量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT线性代数21">
+<meta property="og:url" content="http://example.com/2026/03/08/math/linalg/mitlinalg21/index.html">
+<meta property="og:site_name" content="Eyphka">
+<meta property="og:description" content="第二十一讲：特征值和特征向量">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-08T04:23:22.239Z">
+<meta property="article:modified_time" content="2026-03-08T05:02:51.339Z">
+<meta property="article:author" content="Daniel Liu">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/03/08/math/linalg/mitlinalg21/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/03/08/math/linalg/mitlinalg21/","path":"2026/03/08/math/linalg/mitlinalg21/","title":"MIT线性代数21"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MIT线性代数21 | Eyphka</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.1/pdfobject.min.js","integrity":"sha256-jI72I8ZLVflVOisZIOaLvRew3tyvzeu6aZXFm7P7dEo="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js" defer></script>
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Eyphka</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%80%E8%AE%B2%EF%BC%9A%E7%89%B9%E5%BE%81%E5%80%BC%E5%92%8C%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F"><span class="nav-number">1.</span> <span class="nav-text">第二十一讲：特征值和特征向量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E5%80%BC%E3%80%81%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F%E7%9A%84%E7%94%B1%E6%9D%A5"><span class="nav-number">1.1.</span> <span class="nav-text">特征值、特征向量的由来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%82%E8%A7%A3-Ax-lambda-x"><span class="nav-number">1.2.</span> <span class="nav-text">求解$Ax&#x3D;\lambda x$</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Daniel Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/08/math/linalg/mitlinalg21/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Daniel Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eyphka">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MIT线性代数21 | Eyphka">
+      <meta itemprop="description" content="第二十一讲：特征值和特征向量">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MIT线性代数21
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-03-08 12:23:22 / Modified: 13:02:51" itemprop="dateCreated datePublished" datetime="2026-03-08T12:23:22+08:00">2026-03-08</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">第二十一讲：特征值和特征向量</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="第二十一讲：特征值和特征向量"><a href="#第二十一讲：特征值和特征向量" class="headerlink" title="第二十一讲：特征值和特征向量"></a>第二十一讲：特征值和特征向量</h1><h2 id="特征值、特征向量的由来"><a href="#特征值、特征向量的由来" class="headerlink" title="特征值、特征向量的由来"></a>特征值、特征向量的由来</h2><p>给定矩阵$A$，矩阵$A$乘以向量$x$，就像是使用矩阵$A$作用在向量$x$上，最后得到新的向量$Ax$。在这里，矩阵$A$就像是一个函数，接受一个向量$x$作为输入，给出向量$Ax$作为输出。</p>
+<p>在这一过程中，我们对一些特殊的向量很感兴趣，他们在输入($x$)输出($Ax$)的过程中始终保持同一个方向，这是比较特殊的，因为在大多情况下，$Ax$与$x$指向不同的方向。在这种特殊的情况下，$Ax$平行于$x$，我们把满足这个条件的$x$成为特征向量（Eigen vector）。这个平行条件用方程表示就是：</p>
+<p>$$Ax&#x3D;\lambda x\tag{1}$$</p>
+<ul>
+<li><p>对这个式子，我们试着计算特征值为$0$的特征向量，此时有$Ax&#x3D;0$，也就是特征值为$0$的特征向量应该位于$A$的零空间中。</p>
+<p>  也就是说，如果矩阵是奇异的，那么它将有一个特征值为$\lambda &#x3D; 0$。</p>
+</li>
+<li><p>我们再来看投影矩阵$P&#x3D;A(A^TA)^{-1}A^T$的特征值和特征向量。用向量$b$乘以投影矩阵$P$得到投影向量$Pb$，在这个过程中，只有当$b$已经处于投影平面（即$A$的列空间）中时，$Pb$与$b$才是同向的，此时$b$投影前后不变（$Pb&#x3D;1\cdot b$）。</p>
+<p>  即在投影平面中的所有向量都是投影矩阵的特征向量，而他们的特征值均为$1$。</p>
+<p>  再来观察投影平面的法向量，也就是投影一讲中的$e$向量。我们知道对于投影，因为$e\bot C(A)$，所以$Pe&#x3D;0e$，即特征向量$e$的特征值为$0$。</p>
+<p>  于是，投影矩阵的特征值为$\lambda&#x3D;1, 0$。</p>
+</li>
+<li><p>再多讲一个例子，二阶置换矩阵$A&#x3D;\begin{bmatrix}0&amp;1\\1&amp;0\end{bmatrix}$，经过这个矩阵处理的向量，其元素会互相交换。</p>
+<p>  那么特征值为$1$的特征向量（即经过矩阵交换元素前后仍然不变）应该型为$\begin{bmatrix}1\\1\end{bmatrix}$。</p>
+<p>  特征值为$-1$的特征向量（即经过矩阵交换元素前后方向相反）应该型为$\begin{bmatrix}1\\-1\end{bmatrix}$。</p>
+</li>
+</ul>
+<p>再提前透露一个特征值的性质：对于一个$n\times n$的矩阵，将会有$n$个特征值，而这些特征值的和与该矩阵对角线元素的和相同，因此我们把矩阵对角线元素称为矩阵的迹（trace）。$$\sum_{i&#x3D;1}^n \lambda_i&#x3D;\sum_{i&#x3D;1}^n a_{ii}$$</p>
+<p>在上面二阶转置矩阵的例子中，如果我们求得了一个特征值$1$，那么利用迹的性质，我们就可以直接推出另一个特征值是$-1$。</p>
+<h2 id="求解-Ax-lambda-x"><a href="#求解-Ax-lambda-x" class="headerlink" title="求解$Ax&#x3D;\lambda x$"></a>求解$Ax&#x3D;\lambda x$</h2><p>对于方程$Ax&#x3D;\lambda x$，有两个未知数，我们需要利用一些技巧从这一个方程中一次解出两个未知数，先移项得$(A-\lambda I)x&#x3D;0$。</p>
+<p>观察$(A-\lambda I)x&#x3D;0$，右边的矩阵相当于将$A$矩阵平移了$\lambda$个单位，而如果方程有解，则这个平移后的矩阵$(A-\lambda I)$一定是奇异矩阵。根据前面学到的行列式的性质，则有$$\det{(A-\lambda{I})}&#x3D;0\tag{2}$$</p>
+<p>这样一来，方程中就没有$x$了，这个方程也叫作特征方程（characteristic equation）。有了特征值，代回$(A-\lambda I)x&#x3D;0$，继续求$(A-\lambda I)$的零空间即可。</p>
+<ul>
+<li><p>现在计算一个简单的例子，$A&#x3D;\begin{bmatrix}3&amp;1\\1&amp;3\end{bmatrix}$，再来说一点题外话，这是一个对称矩阵，我们将得到实特征值，前面还有置换矩阵、投影矩阵，矩阵越特殊，则我们得到的特征值与特征向量也越特殊。看置换矩阵中的特征值，两个实数$1, -1$，而且它们的特征向量是正交的。</p>
+<p>  回到例题，计算$\det{(A-\lambda{I})}&#x3D;\begin{vmatrix}3-\lambda&amp;1\\1&amp;3-\lambda\end{vmatrix}$，也就是对角矩阵平移再取行列式。原式继续化简得$(3-\lambda)^2-1&#x3D;\lambda^2-6\lambda+8&#x3D;0, \lambda_1&#x3D;4,\lambda_2&#x3D;2$。可以看到一次项系数$-6$与矩阵的迹有关，常数项与矩阵的行列式有关。</p>
+<p>  继续计算特征向量，$A-4I&#x3D;\begin{bmatrix}-1&amp;1\\1&amp;-1\end{bmatrix}$，显然矩阵是奇异的（如果是非奇异说明特征值计算有误），解出矩阵的零空间$x_1&#x3D;\begin{bmatrix}1\\1\end{bmatrix}$；同理计算另一个特征向量，$A-2I&#x3D;\begin{bmatrix}1&amp;1\\1&amp;1\end{bmatrix}$，解出矩阵的零空间$x_2&#x3D;\begin{bmatrix}1\\-1\end{bmatrix}$。</p>
+<p>  回顾前面转置矩阵的例子，对矩阵$A’&#x3D;\begin{bmatrix}0&amp;1\\1&amp;0\end{bmatrix}$有$\lambda_1&#x3D;1, x_1&#x3D;\begin{bmatrix}1\\1\end{bmatrix}, \lambda_2&#x3D;-1, x_2&#x3D;\begin{bmatrix}-1\\1\end{bmatrix}$。看转置矩阵$A’$与本例中的对称矩阵$A$有什么联系。</p>
+<p>  易得$A&#x3D;A’+3I$，两个矩阵特征值相同，而其特征值刚好相差$3$。也就是如果给一个矩阵加上$3I$，则它的特征值会加$3$，而特征向量不变。这也很容易证明，如果$Ax&#x3D;\lambda x$，则$(A+3I)x&#x3D;\lambda x+3x&#x3D;(\lambda+3)x$，所以$x$还是原来的$x$，而$\lambda$变为$\lambda+3$。</p>
+</li>
+</ul>
+<p>接下来，看一个关于特征向量认识的误区：已知$Ax&#x3D;\lambda x, Bx&#x3D;\alpha x$，则有$(A+B)x&#x3D;(\lambda+\alpha)x$，当$B&#x3D;3I$时，在上例中我们看到，确实成立，但是如果$B$为任意矩阵，则推论<strong>不成立</strong>，因为这两个式子中的特征向量$x$并不一定相同，所以两个式子的通常情况是$Ax&#x3D;\lambda x, By&#x3D;\alpha y$，它们也就无从相加了。</p>
+<ul>
+<li><p>再来看旋转矩阵的例子，旋转$90^\circ$的矩阵$Q&#x3D;\begin{bmatrix}\cos 90&amp;-\sin 90\\\sin 90&amp;\cos 90\end{bmatrix}&#x3D;\begin{bmatrix}0&amp;-1\\1&amp;0\end{bmatrix}$（将每个向量旋转$90^\circ$，用$Q$表示因为旋转矩阵是正交矩阵中很重要的例子）。</p>
+<p>  上面提到特征值的一个性质：特征值之和等于矩阵的迹；现在有另一个性质：特征值之积等于矩阵的行列式。$$\prod_{i&#x3D;1}^n\lambda_i&#x3D;\det A$$</p>
+<p>  对于$Q$矩阵，有$\begin{cases}\lambda_1+\lambda_2&amp;&#x3D;0\\\lambda_1\cdot\lambda_2&amp;&#x3D;1\end{cases}$，再来思考特征值与特征向量的由来，哪些向量旋转$90^\circ$后与自己平行，于是遇到了麻烦，并没有这种向量，也没有这样的特征值来满足前面的方程组。</p>
+<p>  我们来按部就班的计算，$\det(Q-\lambda I)&#x3D;\begin{vmatrix}\lambda&amp;-1\\1&amp;\lambda\end{vmatrix}&#x3D;\lambda^2+1&#x3D;0$，于是特征值为$\lambda_1&#x3D;i, \lambda_2&#x3D;-i$，我们看到这两个值满足迹与行列式的方程组，即使矩阵全是实数，其特征值也可能不是实数。本例中即出现了一对共轭负数，我们可以说，如果矩阵越接近对称，那么特征值就是实数。如果矩阵越不对称，就像本例，$Q^T&#x3D;-Q$，这是一个反对称的矩阵，于是我得到了纯虚的特征值，这是极端情况，通常我们见到的矩阵是介于对称与反对称之间的。</p>
+<p>  于是我们看到，对于好的矩阵（置换矩阵）有实特征值及正交的特征向量，对于不好的矩阵（$90^\circ$旋转矩阵）有纯虚的特征值。</p>
+</li>
+<li><p>再来看一个更糟的情况，$A&#x3D;\begin{bmatrix}3&amp;1\\0&amp;3\end{bmatrix}$，这是一个三角矩阵，我们可以直接得出其特征值，即对角线元素。来看如何得到这一结论的：$\det(A-\lambda I)&#x3D;\begin{vmatrix}3-\lambda&amp;1\\0&amp;3-\lambda\end{vmatrix}&#x3D;(3-\lambda)^2&#x3D;0$，于是$\lambda_1&#x3D;3, \lambda_2&#x3D;3$。而我们说这是一个糟糕的状况，在于它的特征向量。</p>
+<p>  带入特征值计算特征向量，带入$\lambda_1&#x3D;3$得$(A-\lambda I)x&#x3D;\begin{bmatrix}0&amp;1\\0&amp;0\end{bmatrix}\begin{bmatrix}x_1\\x_2\end{bmatrix}&#x3D;\begin{bmatrix}0\\0\end{bmatrix}$，算出一个特征值$x_1&#x3D;\begin{bmatrix}1\\0\end{bmatrix}$，当我们带入第二个特征值$\lambda_1&#x3D;3$时，我们无法得到另一个与$x_1$线性无关的特征向量了。</p>
+<p>  而本例中的矩阵$A$是一个退化矩阵（degenerate matrix），重复的特征值在特殊情况下可能导致特征向量的短缺。</p>
+</li>
+</ul>
+<p>这一讲我们看到了足够多的“不好”的矩阵，下一讲会介绍一般情况下的特征值与特征向量。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg20/" rel="prev" title="MIT线性代数20">
+                  <i class="fa fa-angle-left"></i> MIT线性代数20
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg22/" rel="next" title="MIT线性代数22">
+                  MIT线性代数22 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Daniel Liu</span>
+  </div>
+  <div class="powered-by">
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

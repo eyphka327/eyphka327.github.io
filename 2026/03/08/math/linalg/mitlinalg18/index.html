@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="第十八讲：行列式及其性质">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT线性代数18">
+<meta property="og:url" content="http://example.com/2026/03/08/math/linalg/mitlinalg18/index.html">
+<meta property="og:site_name" content="Eyphka">
+<meta property="og:description" content="第十八讲：行列式及其性质">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-08T04:23:22.215Z">
+<meta property="article:modified_time" content="2026-03-08T04:57:46.395Z">
+<meta property="article:author" content="Daniel Liu">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/03/08/math/linalg/mitlinalg18/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/03/08/math/linalg/mitlinalg18/","path":"2026/03/08/math/linalg/mitlinalg18/","title":"MIT线性代数18"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MIT线性代数18 | Eyphka</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.1/pdfobject.min.js","integrity":"sha256-jI72I8ZLVflVOisZIOaLvRew3tyvzeu6aZXFm7P7dEo="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js" defer></script>
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Eyphka</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E5%85%AB%E8%AE%B2%EF%BC%9A%E8%A1%8C%E5%88%97%E5%BC%8F%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8"><span class="nav-number">1.</span> <span class="nav-text">第十八讲：行列式及其性质</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Daniel Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/08/math/linalg/mitlinalg18/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Daniel Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eyphka">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MIT线性代数18 | Eyphka">
+      <meta itemprop="description" content="第十八讲：行列式及其性质">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MIT线性代数18
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-03-08 12:23:22 / Modified: 12:57:46" itemprop="dateCreated datePublished" datetime="2026-03-08T12:23:22+08:00">2026-03-08</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">第十八讲：行列式及其性质</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="第十八讲：行列式及其性质"><a href="#第十八讲：行列式及其性质" class="headerlink" title="第十八讲：行列式及其性质"></a>第十八讲：行列式及其性质</h1><p>本讲我们讨论出行列式（determinant）的性质：</p>
+<ol>
+<li><p>$\det{I}&#x3D;1$，单位矩阵行列式值为一。</p>
+</li>
+<li><p>交换行行列式变号。</p>
+<p> 在给出第三个性质之前，先由前两个性质可知，对置换矩阵有$\det P&#x3D;\begin{cases}1\quad &amp;even\\-1\quad &amp;odd\end{cases}$。</p>
+<p> 举例：$\begin{vmatrix}1&amp;0\\0&amp;1\end{vmatrix}&#x3D;1,\quad\begin{vmatrix}0&amp;1\\1&amp;0\end{vmatrix}&#x3D;-1$，于是我们猜想，对于二阶方阵，行列式的计算公式为$\begin{vmatrix}a&amp;b\\c&amp;d\end{vmatrix}&#x3D;ad-bc$。</p>
+</li>
+<li><p>a. $\begin{vmatrix}ta&amp;tb\\c&amp;d\end{vmatrix}&#x3D;t\begin{vmatrix}a&amp;b\\c&amp;d\end{vmatrix}$。</p>
+<p> b. $\begin{vmatrix}a+a’&amp;b+b’\\c&amp;d\end{vmatrix}&#x3D;\begin{vmatrix}a&amp;b\\c&amp;d\end{vmatrix}+\begin{vmatrix}a’&amp;b’\\c&amp;d\end{vmatrix}$。</p>
+<p> <strong>注意</strong>：<del>这里并不是指$\det (A+B)&#x3D;\det A+\det B$，方阵相加会使每一行相加，这里仅是针对某一行的线性变换。</del></p>
+</li>
+<li><p>如果两行相等，则行列式为零。使用性质2交换两行易证。</p>
+</li>
+<li><p>从第$k$行中减去第$i$行的$l$倍，行列式不变。这条性质是针对消元的，我们可以先消元，将方阵变为上三角形式后再计算行列式。</p>
+<p> 举例：$\begin{vmatrix}a&amp;b\\c-la&amp;d-lb\end{vmatrix}\stackrel{3.b}{&#x3D;}\begin{vmatrix}a&amp;b\\c&amp;d\end{vmatrix}+\begin{vmatrix}a&amp;b\\-la&amp;-lb\end{vmatrix}\stackrel{3.a}{&#x3D;}\begin{vmatrix}a&amp;b\\c&amp;d\end{vmatrix}-l\begin{vmatrix}a&amp;b\\a&amp;b\end{vmatrix}\stackrel{4}{&#x3D;}\begin{vmatrix}a&amp;b\\c&amp;d\end{vmatrix}$</p>
+</li>
+<li><p>如果方阵的某一行为零，则其行列式值为零。使用性质3.a对为零行乘以不为零系数$l$，使$l\det A&#x3D;\det A$即可证明；或使用性质5将某行加到为零行，使存在两行相等后使用性质4即可证明。</p>
+</li>
+<li><p>有上三角行列式$U&#x3D;\begin{vmatrix}d_{1}&amp;<em>&amp;\cdots&amp;</em>\\0&amp;d_{2}&amp;\cdots&amp;<em>\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\0&amp;0&amp;\cdots&amp;d_{n}\end{vmatrix}$，则$\det U&#x3D;d_1d_2\cdots d_n$。使用性质5，从最后一行开始，将对角元素上方的$</em>$元素依次变为零，可以得到型为$D&#x3D;\begin{vmatrix}d_{1}&amp;0&amp;\cdots&amp;0\\0&amp;d_{2}&amp;\cdots&amp;0\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\0&amp;0&amp;\cdots&amp;d_{n}\end{vmatrix}$的对角行列式，再使用性质3将对角元素提出得到$d_nd_{n-1}\cdots d_1\begin{vmatrix}1&amp;0&amp;\cdots&amp;0\\0&amp;1&amp;\cdots&amp;0\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\0&amp;0&amp;\cdots&amp;1\end{vmatrix}$，得证。</p>
+</li>
+<li><p>当矩阵$A$为奇异矩阵时，$\det A&#x3D;0$；当且仅当$A$可逆时，有$\det A\neq0$。如果矩阵可逆，则化简为上三角形式后各行都含有主元，行列式即为主元乘积；如果矩阵奇异，则化简为上三角形式时会出现全零行，行列式为零。</p>
+<p> 再回顾二阶情况：$\begin{vmatrix}a&amp;b\\c&amp;d\end{vmatrix}\xrightarrow{消元}\begin{vmatrix}a&amp;b\\0&amp;d-\frac{c}{a}b\end{vmatrix}&#x3D;ad-bc$，前面的猜想得到证实。</p>
+</li>
+<li><p>$\det AB&#x3D;(\det A)(\det B)$。使用这一性质，$\det I&#x3D;\det{A^{-1}A}&#x3D;\det A^{-1}\det A$，所以$\det A^{-1}&#x3D;\frac{1}{\det A}$。</p>
+<p> 同时还可以得到：$\det A^2&#x3D;(\det A)^2$，以及$\det 2A&#x3D;2^n\det A$，这个式子就像是求体积，对三维物体有每边翻倍则体积变为原来的八倍。</p>
+</li>
+<li><p>$\det A^T&#x3D;\det A$，前面一直在关注行的属性给行列式带来的变化，有了这条性质，行的属性同样适用于列，比如对性质2就有“交换列行列式变号”。</p>
+<p>证明：$\left|A^T\right|&#x3D;\left|A\right|\rightarrow\left|U^TL^T\right|&#x3D;\left|LU\right|\rightarrow\left|U^T\right|\left|L^T\right|&#x3D;\left|L\right|\left|U\right|$，值得注意的是，$L, U$的行列式并不因为转置而改变，得证。</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg17/" rel="prev" title="MIT线性代数17">
+                  <i class="fa fa-angle-left"></i> MIT线性代数17
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg19/" rel="next" title="MIT线性代数19">
+                  MIT线性代数19 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Daniel Liu</span>
+  </div>
+  <div class="powered-by">
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

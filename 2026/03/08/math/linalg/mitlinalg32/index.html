@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="第三十二讲：基变换和图像压缩">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT线性代数32">
+<meta property="og:url" content="http://example.com/2026/03/08/math/linalg/mitlinalg32/index.html">
+<meta property="og:site_name" content="Eyphka">
+<meta property="og:description" content="第三十二讲：基变换和图像压缩">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-08T04:23:22.330Z">
+<meta property="article:modified_time" content="2026-03-08T05:06:32.929Z">
+<meta property="article:author" content="Daniel Liu">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/03/08/math/linalg/mitlinalg32/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/03/08/math/linalg/mitlinalg32/","path":"2026/03/08/math/linalg/mitlinalg32/","title":"MIT线性代数32"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MIT线性代数32 | Eyphka</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.1/pdfobject.min.js","integrity":"sha256-jI72I8ZLVflVOisZIOaLvRew3tyvzeu6aZXFm7P7dEo="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js" defer></script>
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Eyphka</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%8D%81%E4%BA%8C%E8%AE%B2%EF%BC%9A%E5%9F%BA%E5%8F%98%E6%8D%A2%E5%92%8C%E5%9B%BE%E5%83%8F%E5%8E%8B%E7%BC%A9"><span class="nav-number">1.</span> <span class="nav-text">第三十二讲：基变换和图像压缩</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E5%8E%8B%E7%BC%A9"><span class="nav-number">1.1.</span> <span class="nav-text">图像压缩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%82%85%E9%87%8C%E5%8F%B6%E5%9F%BA"><span class="nav-number">1.1.1.</span> <span class="nav-text">傅里叶基</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E6%B3%A2%E5%9F%BA"><span class="nav-number">1.1.2.</span> <span class="nav-text">小波基</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E5%8F%98%E6%8D%A2"><span class="nav-number">1.2.</span> <span class="nav-text">基变换</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Daniel Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/08/math/linalg/mitlinalg32/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Daniel Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eyphka">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MIT线性代数32 | Eyphka">
+      <meta itemprop="description" content="第三十二讲：基变换和图像压缩">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MIT线性代数32
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-03-08 12:23:22 / Modified: 13:06:32" itemprop="dateCreated datePublished" datetime="2026-03-08T12:23:22+08:00">2026-03-08</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">第三十二讲：基变换和图像压缩</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="第三十二讲：基变换和图像压缩"><a href="#第三十二讲：基变换和图像压缩" class="headerlink" title="第三十二讲：基变换和图像压缩"></a>第三十二讲：基变换和图像压缩</h1><h2 id="图像压缩"><a href="#图像压缩" class="headerlink" title="图像压缩"></a>图像压缩</h2><p>本讲我们介绍一种图片有损压缩的一种方法：JPEG。</p>
+<p>假设我们有一张图片，长宽皆为$512$个像素，我们用$x_i$来表示第$i$个像素，如果是灰度照片，通常$x_i$可以在$[0,255]$上取值，也就是8 bits。对于这承载这张图片信息的向量$x$来说，有$x\in\mathbb{R}^n, n&#x3D;512^2$。而如果是彩色照片，通常需要三个量来表示一个像素，则向量长度也会变为现在的三倍。</p>
+<p>如此大的数据不经过压缩很难广泛传播。教学录像采用的压缩方法就是JPEG（Joint Photographic Expert Group，联合图像专家组），该方法采用的就是基变换的方式压缩图像。比如说一块干净的黑白，其附近的像素值应该非常接近，此时如果一个像素一个像素的描述黑白灰度值就太浪费空间了，所以标准基在这种情况下并不能很好的利用图片的特性。</p>
+<p>我们知道，标准基是 $\begin{bmatrix}1\\0\\\vdots\\0\end{bmatrix}\begin{bmatrix}0\\1\\\vdots\\0\end{bmatrix}\cdots\begin{bmatrix}0\\0\\\vdots\\1\end{bmatrix}$，我们想寻找一个更好的基。</p>
+<p>我们试试使用别的基描述图片，比如：</p>
+<ul>
+<li>基中含有的一个向量 $\begin{bmatrix}1&amp;1&amp;\cdots&amp;1\end{bmatrix}^T$，即分量全为$1$的向量，一个向量就可以完整的给出所有“像素一致图像”的信息；</li>
+<li>另一个向量 $\begin{bmatrix}1&amp;-1&amp;\cdots&amp;1&amp;-1\end{bmatrix}^T$，正负交替出现，比如描述国际象棋棋盘；</li>
+<li>第三个个向量 $\begin{bmatrix}1&amp;1&amp;\cdots&amp;-1&amp;-1\end{bmatrix}^T$，一半正一半负，比如描述一半亮一半暗的图片；</li>
+</ul>
+<h3 id="傅里叶基"><a href="#傅里叶基" class="headerlink" title="傅里叶基"></a>傅里叶基</h3><p>现在我们来介绍傅里叶基，以$8\times 8$傅里叶基为例（这表示我们每次只处理$8\times 8$像素的一小块图像）：</p>
+<p>$F_n&#x3D;\begin{bmatrix}1&amp;1&amp;1&amp;\cdots&amp;1\\1&amp;w&amp;w^2&amp;\cdots&amp;w^{n-1}\\1&amp;w^2&amp;w^4&amp;\cdots&amp;w^{2(n-1)}\\\vdots&amp;\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\1&amp;w^{n-1}&amp;w^{2(n-1)}&amp;\cdots&amp;w^{(n-1)^2}\end{bmatrix},\ w&#x3D;e^{i2\pi&#x2F;n},\ n&#x3D;8$，我们不需要深入$8$阶傅里叶基的细节，先看看使用傅里叶基的思路是怎样的。</p>
+<p>每次处理$8\times 8$的一小块时，会遇到$64$个像素，也就是$64$个基向量，$64$个系数，在$64$维空间中利用傅里叶向量做基变换：</p>
+<ul>
+<li><p>输入信号$x$为$64$维向量$\xrightarrow{基变换}$输出信号$c$为$x$在傅里叶基下的$64$个系数。</p>
+<p>  注意前面做的都是无损的步骤，我们只是选了$\mathbb{R}^64$的一组基，接着把信号用这组基表达出来。</p>
+<p>  接下来的步骤就涉及到压缩和损失了：</p>
+</li>
+<li><p>一种方法是扔掉较小的系数，这叫做阈值量化（thresholding），我们设定一个阈值，任何不在阈值范围内的基向量、系数都将丢弃，虽然有信息损失，但是只要阈值设置合理，肉眼几乎无法区别压缩前后的图片。经由此步处理，向量$c$变为$\hat c$，而$\hat c$将有很多$0$。</p>
+<p>  通常$\begin{bmatrix}1&amp;1&amp;\cdots&amp;1\end{bmatrix}^T$向量很难被丢弃，它通常具有较大的系数。但是$\begin{bmatrix}1&amp;-1&amp;\cdots&amp;1&amp;-1\end{bmatrix}^T$向量在平滑信号中的可能性就很小了。前一个的向量称作低频信号，频率为$0$，后一个向量称作高频信号，也是我们能够得到的最高频率的信号，如果是噪音或抖动输出的就是它。</p>
+<p>  比如讲课的视频图像信号，这种平滑的情形下输出的大多是低频信号，很少出现噪音。</p>
+</li>
+<li><p>接着我们用这些系数$\hat c$来重构信号，用这些系数乘以对应的基向量$\hat x&#x3D;\sum \hat{c}_iv_i$，但是这个求和不再是$64$项求和了，因为压缩后的系数中有很多零存在，比如说我们压缩后$\hat c$中仅有三个非零项，那么压缩比将近达到$21:1$。</p>
+</li>
+</ul>
+<p>我们再来提一下视频压缩：视频是一系列连续图像，且相近的帧非常接近，而我们的压缩算法就需要利用这个相近性质。在实际生活中，从时间与空间的角度讲，事物不会瞬间改变。</p>
+<h3 id="小波基"><a href="#小波基" class="headerlink" title="小波基"></a>小波基</h3><p>接下来介绍另一组基，它是傅里叶基的竞争对手，名为小波（wavelets），同样以$8\times 8$为例：<br>$$\begin{bmatrix}1\\1\\1\\1\\1\\1\\1\\1\end{bmatrix}<br>\begin{bmatrix}1\\1\\1\\1\\-1\\-1\\-1\\-1\end{bmatrix}<br>\begin{bmatrix}1\\1\\-1\\-1\\0\\0\\0\\0\end{bmatrix}<br>\begin{bmatrix}0\\0\\0\\0\\1\\1\\-1\\-1\end{bmatrix}<br>\begin{bmatrix}1\\-1\\0\\0\\0\\0\\0\\0\end{bmatrix}<br>\begin{bmatrix}0\\0\\1\\-1\\0\\0\\0\\0\end{bmatrix}<br>\begin{bmatrix}0\\0\\0\\0\\1\\-1\\0\\0\end{bmatrix}<br>\begin{bmatrix}0\\0\\0\\0\\0\\0\\1\\-1\end{bmatrix}$$</p>
+<p>可以看出傅里叶基中频率最高的向量为小波后四个基向量之和。</p>
+<p>在标准基下的一组（按八个一组计算，$P\in\mathbb{R}^8$）像素$P&#x3D;\begin{bmatrix}p_1\\p_2\\\vdots\\p_8\end{bmatrix}&#x3D;c_1w_1+c_2w_2+\cdots+c_nw_n&#x3D;\Bigg[w_1\ w_2\ \cdots\ w_n\Bigg]\begin{bmatrix}c_1\\c_2\\\vdots\\c_n\end{bmatrix}$，即$P&#x3D;WC$，我们需要计算像素向量在另一组基下系数，所以有$C&#x3D;W^{-1}P$。</p>
+<p>此时我们发现，如果选取“好的基”会使得逆矩阵的求解过程变简单，所谓“好的基”：</p>
+<ul>
+<li><p>计算快；</p>
+<p>  我们需要大量使用$P&#x3D;WC$来计算整幅图在另一个基下的表达，在傅里叶变换中我们学习了快速傅里叶变换（FFT），同样的在小波变换中也有快速小波变换（FWT）；</p>
+<p>  另外的，我们需要计算其逆矩阵，所以这个逆矩阵计算也必须快，观察小波基不难发现基向量相互正交，假设我们已经对小波基做了标准化处理，则小波基是一组标准正交基，所以有$W^{-1}&#x3D;W^T$。</p>
+</li>
+<li><p>仅需少量向量即可最大限度的重现图像。</p>
+<p>  因为在图像压缩时，我们会舍弃较小的系数，比如$c_5,c_6,c_7,c_8$，所以后四个的基向量都会被舍弃，重现图像时仅使用前四个基向量的线性组合，而好的基选取会在使用较少基的前提下保证图像质量不会有较大损失。</p>
+<p>  题外话：JPEG2000标准会将小波基纳入压缩算法。我们上面介绍的是最简单的一组小波基，而FBI的指纹识别或JPEG2000的压缩算法纳入的是更加平滑的小波基，不会使用像上面介绍的那种直接从$1$变为$-1$的基。</p>
+</li>
+</ul>
+<p>要想继续了解小波基，可以参考一篇非常精彩的文章<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/22864189/answer/40772083">能不能通俗的讲解下傅立叶分析和小波分析之间的关系？——“咚懂咚懂咚“的答案</a></p>
+<h2 id="基变换"><a href="#基变换" class="headerlink" title="基变换"></a>基变换</h2><p>前面介绍小波基的时候我们就已经做了一次基变换。</p>
+<p>将目标基的向量按列组成矩阵$W$，则基变换就是$\Bigg[x\Bigg]\xrightarrow{x&#x3D;Wc}\Bigg[c\Bigg]$。</p>
+<p>看一个例子，有线性变换$T:\mathbb{R}^8\to\mathbb{R}^8$，在第一组基$v_1,v_2,\cdots,v_8$上计算得到矩阵$A$，在第二组基$w_1,w_2,\cdots,w_n$上计算得到矩阵$B$。先说结论，矩阵$A,B$是相似的，也就是有$B&#x3D;M^{-1}AM$，而$M$就是基变换矩阵。</p>
+<p>进行基变换时会发生两件事：</p>
+<ol>
+<li><p>每个向量都会有一组新的坐标，而$x&#x3D;Wc$就是新旧坐标的关系；</p>
+</li>
+<li><p>每个线性变换都会有一个新的矩阵，而$B&#x3D;M^{-1}AM$就是新旧矩阵的关系。</p>
+<p> 再来看什么是$A$矩阵？</p>
+<p> 对于第一组基$v_1,v_2,\cdots,v_8$，要完全了解线性变换$T$，只需要知道$T$作用在基的每一个向量上会产生什么结果即可。因为在这个基下的每一个向量都可以写成$x&#x3D;c_1v_1+c_2v_2+\cdots+c_8v_8$的形式，所以$T(x)&#x3D;c_1T(v_1)+c_2T(v_2)+\cdots+c_8T(v_8)$。</p>
+<p> 而且$T(v_1)&#x3D;a_{11}v_1+a_{21}v_2+\cdots+a_{81}v_8,\ T(v_2)&#x3D;a_{12}v_1+a_{22}v_2+\cdots+a_{82}v_8,\ \cdots$，则矩阵$\begin{bmatrix}A\end{bmatrix}&#x3D;\left[\begin{array}{c|c|c|c}a_{11}&amp;a_{12}&amp;\cdots&amp;a_{1n}\\a_{21}&amp;a_{22}&amp;\cdots&amp;a_{2n}\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\a_{m1}&amp;a_{m2}&amp;\cdots&amp;a_{mn}\\\end{array}\right]$</p>
+<p> 这些都是上一讲结尾所涉及的知识。</p>
+</li>
+</ol>
+<p>最后我们以一个更加特殊的基收场，设$v_1,v_2,\cdots,v_n$是一组特征向量，也就是$T(v_i)&#x3D;\lambda_1v_i$，那么问题就是矩阵$A$是什么？</p>
+<p>继续使用线性变换中学到的，输入的第一个向量$v_1$经由$T$加工后得到$\lambda_1v_1$，第二个向量$v_2\xrightarrow{T}\lambda_2v_2$，继续做下去，最终有$v_n&#x3D;v_n\xrightarrow{T}\lambda_nv_n$。除了$\lambda_iv_i$外的其他基向量都变为$0$，那么矩阵$A&#x3D;\begin{bmatrix}\lambda_1&amp;&amp;&amp;\\&amp;\lambda_2&amp;&amp;\\&amp;&amp;\ddots&amp;\\&amp;&amp;&amp;\lambda_n\end{bmatrix}$。</p>
+<p>这是一个非常完美的基，我们在图像处理中最想要的就是这种基，但是找出像素矩阵的特征向量代价太大，所以我们找了一些代价小同时效果也不错的基，比如小波基、傅里叶基等等。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg31/" rel="prev" title="MIT线性代数31">
+                  <i class="fa fa-angle-left"></i> MIT线性代数31
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg33/" rel="next" title="MIT线性代数33">
+                  MIT线性代数33 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Daniel Liu</span>
+  </div>
+  <div class="powered-by">
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

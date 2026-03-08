@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="第二十讲：克拉默法则、逆矩阵、体积">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT线性代数20">
+<meta property="og:url" content="http://example.com/2026/03/08/math/linalg/mitlinalg20/index.html">
+<meta property="og:site_name" content="Eyphka">
+<meta property="og:description" content="第二十讲：克拉默法则、逆矩阵、体积">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-08T04:23:22.231Z">
+<meta property="article:modified_time" content="2026-03-08T04:57:44.249Z">
+<meta property="article:author" content="Daniel Liu">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/03/08/math/linalg/mitlinalg20/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/03/08/math/linalg/mitlinalg20/","path":"2026/03/08/math/linalg/mitlinalg20/","title":"MIT线性代数20"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MIT线性代数20 | Eyphka</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.1/pdfobject.min.js","integrity":"sha256-jI72I8ZLVflVOisZIOaLvRew3tyvzeu6aZXFm7P7dEo="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js" defer></script>
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Eyphka</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E8%AE%B2%EF%BC%9A%E5%85%8B%E6%8B%89%E9%BB%98%E6%B3%95%E5%88%99%E3%80%81%E9%80%86%E7%9F%A9%E9%98%B5%E3%80%81%E4%BD%93%E7%A7%AF"><span class="nav-number">1.</span> <span class="nav-text">第二十讲：克拉默法则、逆矩阵、体积</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%82%E9%80%86%E7%9F%A9%E9%98%B5"><span class="nav-number">1.1.</span> <span class="nav-text">求逆矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%82%E8%A7%A3-Ax-b"><span class="nav-number">1.2.</span> <span class="nav-text">求解$Ax&#x3D;b$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E4%BD%93%E7%A7%AF%EF%BC%88Volume%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">关于体积（Volume）</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Daniel Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/08/math/linalg/mitlinalg20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Daniel Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eyphka">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MIT线性代数20 | Eyphka">
+      <meta itemprop="description" content="第二十讲：克拉默法则、逆矩阵、体积">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MIT线性代数20
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-03-08 12:23:22 / Modified: 12:57:44" itemprop="dateCreated datePublished" datetime="2026-03-08T12:23:22+08:00">2026-03-08</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">第二十讲：克拉默法则、逆矩阵、体积</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="第二十讲：克拉默法则、逆矩阵、体积"><a href="#第二十讲：克拉默法则、逆矩阵、体积" class="headerlink" title="第二十讲：克拉默法则、逆矩阵、体积"></a>第二十讲：克拉默法则、逆矩阵、体积</h1><p>本讲主要介绍逆矩阵的应用。</p>
+<h2 id="求逆矩阵"><a href="#求逆矩阵" class="headerlink" title="求逆矩阵"></a>求逆矩阵</h2><p>我们从逆矩阵开始，对于二阶矩阵有$\begin{bmatrix}a&amp;b\\c&amp;d\end{bmatrix}^{-1}&#x3D;\frac{1}{ad-bc}\begin{bmatrix}d&amp;-b\\-c&amp;a\end{bmatrix}$。观察易得，系数项就是行列式的倒数，而矩阵则是由一系列代数余子式组成的。先给出公式：</p>
+<p>$$<br>A^{-1}&#x3D;\frac{1}{\det A}C^T<br>\tag{1}<br>$$</p>
+<p>观察这个公式是如何运作的，化简公式得$AC^T&#x3D;(\det A)I$，写成矩阵形式有$\begin{bmatrix}a_{11}&amp;a_{12}&amp;\cdots&amp;a_{1n}\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\a_{n1}&amp;a_{n2}&amp;\cdots&amp;a_{nn}\end{bmatrix}\begin{bmatrix}C_{11}&amp;\cdots&amp;C_{n1}\\C_{12}&amp;\cdots&amp;C_{n2}\\\vdots&amp;\ddots&amp;\vdots\\C_{1n}&amp;\cdots&amp;C_{nn}\end{bmatrix}&#x3D;Res$</p>
+<p>对于这两个矩阵的乘积，观察其结果的元素$Res_{11}&#x3D;a_{11}C_{11}+a_{12}C_{12}+\cdots+a_{1n}C_{1n}$，这正是上一讲提到的将行列式按第一行展开的结果。同理，对$Res_{22}, \cdots, Res_{nn}$都有$Res_{ii}&#x3D;\det A$，即对角线元素均为$\det A$。</p>
+<p>再来看非对角线元素：回顾二阶的情况，如果用第一行乘以第二行的代数余子式$a_{11}C_{21}+a_{12}C_{22}$，得到$a(-b)+ab&#x3D;0$。换一种角度看问题，$a(-b)+ab&#x3D;0$也是一个矩阵的行列式值，即$A_{s}&#x3D;\begin{bmatrix}a&amp;b\\a&amp;b\end{bmatrix}$。将$\det A_{s}$按第二行展开，也会得到$\det A_{s}&#x3D;a(-b)+ab$，因为行列式有两行相等所以行列式值为零。</p>
+<p>推广到$n$阶，我们来看元素$Res_{1n}&#x3D;a_{11}C_{n1}+a_{12}C_{n2}+\cdots+a_{1n}C_{nn}$，该元素是第一行与最后一行的代数余子式相乘之积。这个式子也可以写成一个特殊矩阵的行列式，即矩阵$A_{s}&#x3D;\begin{bmatrix}a_{11}&amp;a_{12}&amp;\cdots&amp;a_{1n}\\a_{21}&amp;a_{22}&amp;\cdots&amp;a_{2n}\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\a_{n-a1}&amp;a_{n-12}&amp;\cdots&amp;a_{n-1n}\\a_{11}&amp;a_{12}&amp;\cdots&amp;a_{1n}\end{bmatrix}$。计算此矩阵的行列式，将$\det A_{s}$按最后一行展开，也得到$\det A_{s}&#x3D;a_{11}C_{n1}+a_{12}C_{n2}+\cdots+a_{1n}C_{nn}$。同理，行列式$A_{s}$有两行相等，其值为零。</p>
+<p>结合对角线元素与非对角线元素的结果，我们得到$Res&#x3D;\begin{bmatrix}\det A&amp;0&amp;\cdots&amp;0\\0&amp;\det A&amp;\cdots&amp;0\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\0&amp;0&amp;\cdots&amp;\det A\end{bmatrix}$，也就是$(1)$等式右边的$(\det A)I$，得证。</p>
+<h2 id="求解-Ax-b"><a href="#求解-Ax-b" class="headerlink" title="求解$Ax&#x3D;b$"></a>求解$Ax&#x3D;b$</h2><p>因为我们现在有了逆矩阵的计算公式，所以对$Ax&#x3D;b$有$x&#x3D;A^{-1}b&#x3D;\frac{1}{\det A}C^Tb$，这就是计算$x$的公式，即克莱默法则（Cramer’s rule）。</p>
+<p>现在来观察$x&#x3D;\frac{1}{\det A}C^Tb$，我们将得到的解拆分开来，对$x$的第一个分量有$x_1&#x3D;\frac{y_1}{\det A}$，这里$y_1$是一个数字，其值为$y_1&#x3D;b_1C_{11}+b_2C_{21}+\cdots+b_nC_{n1}$，每当我们看到数字与代数余子式乘之积求和时，都应该联想到求行列式，也就是说$y_1$可以看做是一个矩阵的行列式，我们设这个矩阵为$B_1$。所以有$x_i&#x3D;\frac{\det B_1}{\det A}$，同理有$x_2&#x3D;\frac{\det B_2}{\det A}$，$x_2&#x3D;\frac{\det B_2}{\det A}$。</p>
+<p>而$B_1$是一个型为$\Bigg[b a_2 a_3 \cdots a_n\Bigg]$的矩阵，即将矩阵$A$的第一列变为$b$向量而得到的新矩阵。其实很容易看出，$\det B_1$可以沿第一列展开得到$y_1&#x3D;b_1C_{11}+b_2C_{21}+\cdots+b_nC_{n1}$。</p>
+<p>一般的，有$B_j&#x3D;\Bigg[a_1 a_2 \cdots a_{j-1} b a_{j+1} \cdots a_n\Bigg]$，即将矩阵$A$的第$j$列变为$b$向量而得到的新矩阵。所以，对于解的分量有$x_j&#x3D;\frac{\det B_j}{\det A}$。</p>
+<p>这个公式虽然很漂亮，但是并不方便计算。</p>
+<h2 id="关于体积（Volume）"><a href="#关于体积（Volume）" class="headerlink" title="关于体积（Volume）"></a>关于体积（Volume）</h2><p>先提出命题：行列式的绝对值等于一个箱子的体积。</p>
+<p>来看三维空间中的情形，对于$3$阶方阵$A$，取第一行$(a_1,a_2,a_3)$，令其为三维空间中点$A_1$的坐标，同理有点$A_2, A_3$。连接这三个点与原点可以得到三条边，使用这三条边展开得到一个平行六面体，$\left|\det A\right|$就是该平行六面体的体积。</p>
+<p>对于三阶单位矩阵，其体积为$\det I&#x3D;1$，此时这个箱子是一个单位立方体。这其实也证明了前面学过的行列式性质1。于是我们想，如果能接着证明性质2、3即可证明体积与行列式的关系。</p>
+<p>对于行列式性质2，我们交换两行并不会改变箱子的大小，同时行列式的绝对值也没有改变，得证。</p>
+<p>现在我们取矩阵$A&#x3D;Q$，而$Q$是一个标准正交矩阵，此时这个箱子是一个立方体，可以看出其实这个箱子就是刚才的单位立方体经过旋转得到的。对于标准正交矩阵，有$Q^TQ&#x3D;I$，等式两边取行列式得$\det(Q^TQ)&#x3D;1&#x3D;\left|Q^T\right|\left|Q\right|$，而根据行列式性质10有$\left|Q^T\right|&#x3D;\left|Q\right|$，所以$原式&#x3D;\left|Q\right|^2&#x3D;1, \left|Q\right|&#x3D;\pm 1$。</p>
+<p>接下来在考虑不再是“单位”的立方体，即长方体。 假设$Q$矩阵的第一行翻倍得到新矩阵$Q_2$，此时箱子变为在第一行方向上增加一倍的长方体箱子，也就是两个“标准正交箱子”在第一行方向上的堆叠。易知这个长方体箱子是原来体积的两倍，而根据行列式性质3.a有$\det Q_2&#x3D;\det Q$，于是体积也符合行列式的数乘性质。</p>
+<p>我们来看二阶方阵的情形，$\begin{vmatrix}a+a’&amp;b+b’\\c&amp;d\end{vmatrix}&#x3D;\begin{vmatrix}a&amp;b\\c&amp;d\end{vmatrix}+\begin{vmatrix}a’&amp;b’\\c&amp;d\end{vmatrix}$。在二阶情况中，行列式就是一个求平行四边形面积的公式，原来我们求由四个点$(0,0), (a,b), (c,d), (a+c,b+d)$围成的四边形的面积，需要先求四边形的底边长，再做高求解，现在只需要计算$\det A&#x3D;ad-bc$即可（更加常用的是求由$(0,0), (a,b), (c,d)$围成的三角形的面积，即$\frac{1}{2}ad-bc$）。也就是说，如果知道了歪箱子的顶点坐标，求面积（二阶情形）或体积（三阶情形）时，我们不再需要开方、求角度，只需要计算行列式的值就行了。</p>
+<p>再多说两句我们通过好几讲得到的这个公式，在一般情形下，由点$(x_1,y_1), (x_2,y_2), (x_3,y_3)$围成的三角形面积等于$\frac{1}{2}\begin{vmatrix}x_1&amp;y_1&amp;1\\x_2&amp;y_2&amp;1\\x_3&amp;y_3&amp;1\end{vmatrix}$，计算时分别用第二行、第三行减去第一行化简到第三列只有一个$1$（这个操作实际作用是将三角形移动到原点），得到$\frac{1}{2}\begin{vmatrix}x_1&amp;y_1&amp;1\\x_2-x_1&amp;y_2-y_1&amp;0\\x_3-x_1&amp;y_3-y_1&amp;0\end{vmatrix}$，再按照第三列展开，得到三角形面积等于$\frac{(x_2-x_1)(y_3-y_1)-(x_3-x_1)(y_2-y_1)}{2}$。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg19/" rel="prev" title="MIT线性代数19">
+                  <i class="fa fa-angle-left"></i> MIT线性代数19
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg21/" rel="next" title="MIT线性代数21">
+                  MIT线性代数21 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Daniel Liu</span>
+  </div>
+  <div class="powered-by">
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="第十七讲：正交矩阵和Gram-Schmidt正交化法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT线性代数17">
+<meta property="og:url" content="http://example.com/2026/03/08/math/linalg/mitlinalg17/index.html">
+<meta property="og:site_name" content="Eyphka">
+<meta property="og:description" content="第十七讲：正交矩阵和Gram-Schmidt正交化法">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-08T04:23:22.207Z">
+<meta property="article:modified_time" content="2026-03-08T04:57:47.313Z">
+<meta property="article:author" content="Daniel Liu">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/03/08/math/linalg/mitlinalg17/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/03/08/math/linalg/mitlinalg17/","path":"2026/03/08/math/linalg/mitlinalg17/","title":"MIT线性代数17"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MIT线性代数17 | Eyphka</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.1/pdfobject.min.js","integrity":"sha256-jI72I8ZLVflVOisZIOaLvRew3tyvzeu6aZXFm7P7dEo="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js" defer></script>
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Eyphka</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%83%E8%AE%B2%EF%BC%9A%E6%AD%A3%E4%BA%A4%E7%9F%A9%E9%98%B5%E5%92%8CGram-Schmidt%E6%AD%A3%E4%BA%A4%E5%8C%96%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">第十七讲：正交矩阵和Gram-Schmidt正交化法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E6%AD%A3%E4%BA%A4%E7%9F%A9%E9%98%B5"><span class="nav-number">1.1.</span> <span class="nav-text">标准正交矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gram-Schmidt%E6%AD%A3%E4%BA%A4%E5%8C%96%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">Gram-Schmidt正交化法</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Daniel Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/08/math/linalg/mitlinalg17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Daniel Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eyphka">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MIT线性代数17 | Eyphka">
+      <meta itemprop="description" content="第十七讲：正交矩阵和Gram-Schmidt正交化法">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MIT线性代数17
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-03-08 12:23:22 / Modified: 12:57:47" itemprop="dateCreated datePublished" datetime="2026-03-08T12:23:22+08:00">2026-03-08</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">第十七讲：正交矩阵和Gram-Schmidt正交化法</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="第十七讲：正交矩阵和Gram-Schmidt正交化法"><a href="#第十七讲：正交矩阵和Gram-Schmidt正交化法" class="headerlink" title="第十七讲：正交矩阵和Gram-Schmidt正交化法"></a>第十七讲：正交矩阵和Gram-Schmidt正交化法</h1><h2 id="标准正交矩阵"><a href="#标准正交矩阵" class="headerlink" title="标准正交矩阵"></a>标准正交矩阵</h2><p>定义标准正交向量（orthonormal）：$q_i^Tq_j&#x3D;\begin{cases}0\quad i\neq j\\1\quad i&#x3D;j\end{cases}$</p>
+<p>我们将标准正交向量放入矩阵中，有$Q&#x3D;\Bigg[q_1 q_2 \cdots q_n\Bigg]$。</p>
+<p>上一讲我们研究了$A^A$的特性，现在来观察$Q^TQ&#x3D;\begin{bmatrix} &amp; q_1^T &amp; \\ &amp; q_2^T &amp; \\ &amp; \vdots &amp; \\ &amp; q_n^T &amp; \end{bmatrix}\Bigg[q_1 q_2 \cdots q_n\Bigg]$</p>
+<p>根据标准正交向量的定义，计算$Q^TQ&#x3D;\begin{bmatrix}1&amp;0&amp;\cdots&amp;0\\0&amp;1&amp;\cdots&amp;0\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\0&amp;0&amp;\cdots&amp;1\end{bmatrix}&#x3D;I$，我们也把$Q$成为标准正交矩阵（orthonormal matrix）。</p>
+<p>特别的，当$Q$恰好是方阵时，由于正交性，易得$Q$是可逆的，又$Q^TQ&#x3D;I$，所以$Q^T&#x3D;Q^{-1}$。</p>
+<ul>
+<li>举个置换矩阵的例子：$Q&#x3D;\begin{bmatrix}0&amp;1&amp;0\\1&amp;0&amp;0\\0&amp;0&amp;1\end{bmatrix}$，则$Q^T&#x3D;\begin{bmatrix}0&amp;1&amp;0\\0&amp;0&amp;1\\1&amp;0&amp;0\end{bmatrix}$，易得$Q^TQ&#x3D;I$。</li>
+<li>使用上一讲的例子$Q&#x3D;\begin{bmatrix}\cos\theta&amp;-\sin\theta\\\sin\theta&amp;\cos\theta\end{bmatrix}$，列向量长度为$1$，且列向量相互正交。</li>
+<li>其他例子$Q&#x3D;\frac{1}{\sqrt 2}\begin{bmatrix}1&amp;1\\1&amp;-1\end{bmatrix}$，列向量长度为$1$，且列向量相互正交。</li>
+<li>使用上一个例子的矩阵，令$Q’&#x3D;c\begin{bmatrix}Q&amp;Q\\Q&amp;-Q\end{bmatrix}$，取合适的$c$另列向量长度为$1$也可以构造标准正交矩阵：$Q&#x3D;\frac{1}{2}\begin{bmatrix}1&amp;1&amp;1&amp;1\\1&amp;-1&amp;1&amp;-1\\1&amp;1&amp;-1&amp;-1\\1&amp;-1&amp;-1&amp;1\end{bmatrix}$，这种构造方法以阿德玛（Adhemar）命名，对$2, 4, 16, 64, \cdots$阶矩阵有效。</li>
+<li>再来看一个例子，$Q&#x3D;\frac{1}{3}\begin{bmatrix}1&amp;-2&amp;2\\2&amp;-1&amp;-2\\2&amp;2&amp;1\end{bmatrix}$，列向量长度为$1$，且列向量相互正交。格拉姆-施密特正交化法的缺点在于，由于要求得单位向量，所以我们总是除以向量的长度，这导致标准正交矩阵中总是带有根号，而上面几个例子很少有根号。</li>
+</ul>
+<p>再来看标准正交化有什么好处，假设要做投影，将向量$b$投影在标准正交矩阵$Q$的列空间中，根据上一讲的公式得$P&#x3D;Q(Q^TQ)^{-1}Q^T$，易得$P&#x3D;QQ^T$。我们断言，当列向量为标准正交基时，$QQ^T$是投影矩阵。极端情况，假设矩阵是方阵，而其列向量是标准正交的，则其列空间就是整个向量空间，而投影整个空间的投影矩阵就是单位矩阵，此时$QQ^T&#x3D;I$。可以验证一下投影矩阵的两个性质：$(QQ^T)^T&#x3D;(Q^T)^TQ^T&#x3D;QQ^T$，得证；$(QQ^T)^2&#x3D;QQ^TQQ^T&#x3D;Q(Q^TQ)Q^T&#x3D;QQ^T$，得证。</p>
+<p>我们计算的$A^TA\hat x&#x3D;A^Tb$，现在变为$Q^TQ\hat x&#x3D;Q^Tb$，也就是$\hat x&#x3D;Q^Tb$，分解开来看就是 $\underline{\hat x_i&#x3D;q_i^Tb}$，这个式子在很多数学领域都有重要作用。当我们知道标准正交基，则解向量第$i$个分量为基的第$i$个分量乘以$b$，在第$i$个基方向上的投影就等于$q_i^Tb$。</p>
+<h2 id="Gram-Schmidt正交化法"><a href="#Gram-Schmidt正交化法" class="headerlink" title="Gram-Schmidt正交化法"></a>Gram-Schmidt正交化法</h2><p>我们有两个线性无关的向量$a, b$，先把它们化为正交向量$A, B$，再将它们单位化，变为单位正交向量$q_1&#x3D;\frac{A}{\left|A\right|}, q_2&#x3D;\frac{B}{\left|B\right|}$：</p>
+<ul>
+<li>我们取定$a$向量的方向，$a&#x3D;A$；</li>
+<li>接下来将$b$投影在$A$的法方向上得到$B$，也就是求子空间投影一讲中，我们提到的误差向量$e&#x3D;b-p$，即$B&#x3D;b-\frac{A^Tb}{A^TA}A$。检验一下$A\bot B$，$A^TB&#x3D;A^Tb-A^T\frac{A^Tb}{A^TA}A&#x3D;A^Tb-\frac{A^TA}{A^TA}A^Tb&#x3D;0$。（$\frac{A^Tb}{A^TA}A$就是$A\hat x&#x3D;p$。）</li>
+</ul>
+<p>如果我们有三个线性无关的向量$a, b, c$，则我们现需要求它们的正交向量$A, B, C$，再将它们单位化，变为单位正交向量$q_1&#x3D;\frac{A}{\left|A\right|}, q_2&#x3D;\frac{B}{\left|B\right|}, q_3&#x3D;\frac{C}{\left|C\right|}$：</p>
+<ul>
+<li>前两个向量我们已经得到了，我们现在需要求第三个向量同时正交于$A, B$；</li>
+<li>我们依然沿用上面的方法，从$c$中减去其在$A, B$上的分量，得到正交与$A, B$的$C$：$C&#x3D;c-\frac{A^Tc}{A^TA}A-\frac{B^Tc}{B^TB}B$。</li>
+</ul>
+<p>现在我们试验一下推导出来的公式，$a&#x3D;\begin{bmatrix}1\\1\\1\end{bmatrix}, b&#x3D;\begin{bmatrix}1\\0\\2\end{bmatrix}$：</p>
+<ul>
+<li>则$A&#x3D;a&#x3D;\begin{bmatrix}1\\1\\1\end{bmatrix}$；</li>
+<li>根据公式有$B&#x3D;a-hA$，$h$是比值$\frac{A^Tb}{A^TA}&#x3D;\frac{3}{3}$，则$B&#x3D;\begin{bmatrix}1\\1\\1\end{bmatrix}-\frac{3}{3}\begin{bmatrix}1\\0\\2\end{bmatrix}&#x3D;\begin{bmatrix}0\\-1\\1\end{bmatrix}$。验证一下正交性有$A\cdot B&#x3D;0$。</li>
+<li>单位化，$q_1&#x3D;\frac{1}{\sqrt 3}\begin{bmatrix}1\\1\\1\end{bmatrix},\quad q_2&#x3D;\frac{1}{\sqrt 2}\begin{bmatrix}1\\0\\2\end{bmatrix}$，则标准正交矩阵为$Q&#x3D;\begin{bmatrix}\frac{1}{\sqrt 3}&amp;0\\\frac{1}{\sqrt 3}&amp;-\frac{1}{\sqrt 2}\\\frac{1}{\sqrt 3}&amp;\frac{1}{\sqrt 2}\end{bmatrix}$，对比原来的矩阵$D&#x3D;\begin{bmatrix}1&amp;1\\1&amp;0\\1&amp;2\end{bmatrix}$，有$D, Q$的列空间是相同的，我们只是将原来的基标准正交化了。</li>
+</ul>
+<p>我们曾经用矩阵的眼光审视消元法，有$A&#x3D;LU$。同样的，我们也用矩阵表达标准正交化，$A&#x3D;QR$。设矩阵$A$有两个列向量$\Bigg[a_1 a_2\Bigg]$，则标准正交化后有$\Bigg[a_1 a_2\Bigg]&#x3D;\Bigg[q_1 q_2\Bigg]\begin{bmatrix}a_1^Tq_1&amp;a_2^Tq_1\\a_1^Tq_2&amp;a_2^Tq_2\end{bmatrix}$，而左下角的$a_1^Tq_2$始终为$0$，因为Gram-Schmidt正交化总是使得$a_1\bot q_2$，后来构造的向量总是正交于先前的向量。所以这个$R$矩阵是一个上三角矩阵。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg16/" rel="prev" title="MIT线性代数16">
+                  <i class="fa fa-angle-left"></i> MIT线性代数16
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg18/" rel="next" title="MIT线性代数18">
+                  MIT线性代数18 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Daniel Liu</span>
+  </div>
+  <div class="powered-by">
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

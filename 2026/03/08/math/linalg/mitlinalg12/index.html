@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="第十二讲：图和网络讲四个基本子空间：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT线性代数12">
+<meta property="og:url" content="http://example.com/2026/03/08/math/linalg/mitlinalg12/index.html">
+<meta property="og:site_name" content="Eyphka">
+<meta property="og:description" content="第十二讲：图和网络讲四个基本子空间：">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/math/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/mit/chapter12_1_0.png">
+<meta property="og:image" content="http://example.com/img/math/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/mit/chapter12_3_0.png">
+<meta property="article:published_time" content="2026-03-08T04:23:22.167Z">
+<meta property="article:modified_time" content="2026-03-08T05:17:17.976Z">
+<meta property="article:author" content="Daniel Liu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/math/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/mit/chapter12_1_0.png">
+
+
+<link rel="canonical" href="http://example.com/2026/03/08/math/linalg/mitlinalg12/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/03/08/math/linalg/mitlinalg12/","path":"2026/03/08/math/linalg/mitlinalg12/","title":"MIT线性代数12"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MIT线性代数12 | Eyphka</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.1/pdfobject.min.js","integrity":"sha256-jI72I8ZLVflVOisZIOaLvRew3tyvzeu6aZXFm7P7dEo="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js" defer></script>
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Eyphka</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AE%B2%EF%BC%9A%E5%9B%BE%E5%92%8C%E7%BD%91%E7%BB%9C"><span class="nav-number">1.</span> <span class="nav-text">第十二讲：图和网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%92%8C%E7%BD%91%E7%BB%9C"><span class="nav-number">1.1.</span> <span class="nav-text">图和网络</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Daniel Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/08/math/linalg/mitlinalg12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Daniel Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eyphka">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MIT线性代数12 | Eyphka">
+      <meta itemprop="description" content="第十二讲：图和网络讲四个基本子空间：">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MIT线性代数12
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-03-08 12:23:22 / Modified: 13:17:17" itemprop="dateCreated datePublished" datetime="2026-03-08T12:23:22+08:00">2026-03-08</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">第十二讲：图和网络讲四个基本子空间：</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="第十二讲：图和网络"><a href="#第十二讲：图和网络" class="headerlink" title="第十二讲：图和网络"></a>第十二讲：图和网络</h1><h2 id="图和网络"><a href="#图和网络" class="headerlink" title="图和网络"></a>图和网络</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> networkx <span class="keyword">as</span> nx</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line">dg = nx.DiGraph()</span><br><span class="line">dg.add_edges_from([(<span class="number">1</span>,<span class="number">2</span>), (<span class="number">2</span>,<span class="number">3</span>), (<span class="number">1</span>,<span class="number">3</span>), (<span class="number">1</span>,<span class="number">4</span>), (<span class="number">3</span>,<span class="number">4</span>)])</span><br><span class="line">edge_labels = &#123;(<span class="number">1</span>, <span class="number">2</span>): <span class="number">1</span>, (<span class="number">1</span>, <span class="number">3</span>): <span class="number">3</span>, (<span class="number">1</span>, <span class="number">4</span>): <span class="number">4</span>, (<span class="number">2</span>, <span class="number">3</span>): <span class="number">2</span>, (<span class="number">3</span>, <span class="number">4</span>): <span class="number">5</span>&#125;</span><br><span class="line"></span><br><span class="line">pos = nx.spring_layout(dg)</span><br><span class="line">nx.draw_networkx_edge_labels(dg,pos,edge_labels=edge_labels, font_size=<span class="number">16</span>)</span><br><span class="line">nx.draw_networkx_labels(dg, pos, font_size=<span class="number">20</span>, font_color=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">nx.draw(dg, pos, node_size=<span class="number">1500</span>, node_color=<span class="string">&quot;gray&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/img/math/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/mit/chapter12_1_0.png" alt="png"></p>
+<p>该图由4个节点与5条边组成，</p>
+<p>$$<br>\begin{array}{c | c c c c}<br>       &amp; node_1 &amp; node_2 &amp; node_3 &amp; node_4 \\<br>\hline<br>edge_1 &amp; -1     &amp; 1      &amp; 0      &amp; 0      \\<br>edge_2 &amp; 0      &amp; -1     &amp; 1      &amp; 0      \\<br>edge_3 &amp; -1     &amp; 0      &amp; 1      &amp; 0      \\<br>edge_4 &amp; -1     &amp; 0      &amp; 0      &amp; 1      \\<br>edge_5 &amp; 0      &amp; 0      &amp; -1     &amp; 1      \\<br>\end{array}<br>$$</p>
+<p>我们可以建立$5 \times 4$矩阵<br>$$<br>A&#x3D;<br>\begin{bmatrix}<br>-1 &amp; 1 &amp; 0 &amp; 0 \\<br>0 &amp; -1 &amp; 1 &amp; 0 \\<br>-1 &amp; 0 &amp; 1 &amp; 0 \\<br>-1 &amp; 0 &amp; 0 &amp; 1 \\<br>0 &amp; 0 &amp; -1 &amp; 1 \\<br>\end{bmatrix}<br>$$</p>
+<p>观察前三行，易看出这三个行向量线性相关，也就是这三个向量可以形成回路（loop）。</p>
+<p>现在，解$Ax&#x3D;0$：<br>$$<br>Ax&#x3D;<br>\begin{bmatrix}<br>-1 &amp; 1 &amp; 0 &amp; 0 \\<br>0 &amp; -1 &amp; 1 &amp; 0 \\<br>-1 &amp; 0 &amp; 1 &amp; 0 \\<br>-1 &amp; 0 &amp; 0 &amp; 1 \\<br>0 &amp; 0 &amp; -1 &amp; 1 \\<br>\end{bmatrix}<br>\begin{bmatrix}<br>x_1\\x_2\\x_3\\x_4\\<br>\end{bmatrix}<br>$$</p>
+<p>展开得到：<br>$\begin{bmatrix}x_2-x_1 \\x_3-x_2 \\x_3-x_1 \\x_4-x_1 \\x_4-x_3 \\ \end{bmatrix}&#x3D;\begin{bmatrix}0\\0\\0\\0\\0\\ \end{bmatrix}$</p>
+<p>引入矩阵的实际意义：将$x&#x3D;\begin{bmatrix}x_1 &amp; x_2 &amp; x_3 &amp; x_4\end{bmatrix}$设为各节点电势（Potential at the Nodes）。</p>
+<p>则式子中的诸如$x_2-x_1$的元素，可以看做该边上的电势差（Potential Differences）。</p>
+<p>容易看出其中一个解$x&#x3D;\begin{bmatrix}1\\1\\1\\1\end{bmatrix}$，即等电势情况，此时电势差为$0$。</p>
+<p>化简$A$易得$rank(A)&#x3D;3$，所以其零空间维数应为$n-r&#x3D;4-3&#x3D;1$，即$\begin{bmatrix}1\\1\\1\\1\end{bmatrix}$就是其零空间的一组基。</p>
+<p>其零空间的物理意义为，当电位相等时，不存在电势差，图中无电流。</p>
+<p>当我们把图中节点$4$接地后，节点$4$上的电势为$0$，此时的<br>$$<br>A&#x3D;<br>\begin{bmatrix}<br>-1 &amp; 1 &amp; 0 \\<br>0 &amp; -1 &amp; 1 \\<br>-1 &amp; 0 &amp; 1 \\<br>-1 &amp; 0 &amp; 0 \\<br>0 &amp; 0 &amp; -1 \\<br>\end{bmatrix}<br>$$各列线性无关，$rank(A)&#x3D;3$。</p>
+<p>现在看看$A^Ty&#x3D;0$（这是应用数学里最常用的式子）：</p>
+<p>$A^Ty&#x3D;0&#x3D;\begin{bmatrix}-1 &amp; 0 &amp; -1 &amp; -1 &amp; 0 \\1 &amp; -1 &amp; 0 &amp; 0 &amp; 0 \\0 &amp; 1 &amp; 1 &amp; 0 &amp; -1 \\0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\ \end{bmatrix}\begin{bmatrix}y_1\\y_2\\y_3\\y_4\\y_5\end{bmatrix}&#x3D;\begin{bmatrix}0\\0\\0\\0\end{bmatrix}$，对于转置矩阵有$dim N(A^T)&#x3D;m-r&#x3D;5-3&#x3D;2$。</p>
+<p>接着说上文提到的的电势差，矩阵$C$将电势差与电流联系起来，电流与电势差的关系服从欧姆定律：边上的电流值是电势差的倍数，这个倍数就是边的电导（conductance）即电阻（resistance）的倒数。</p>
+<p>$$<br>电势差<br>\xrightarrow[欧姆定律]{矩阵C}<br>各边上的电流y_1, y_2, y_3, y_4, y_5<br>$$而$A^Ty&#x3D;0$的另一个名字叫做“基尔霍夫电流定律”（Kirchoff’s Law, 简称KCL）。</p>
+<p>再把图拿下来观察：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> networkx <span class="keyword">as</span> nx</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line">dg = nx.DiGraph()</span><br><span class="line">dg.add_edges_from([(<span class="number">1</span>,<span class="number">2</span>), (<span class="number">2</span>,<span class="number">3</span>), (<span class="number">1</span>,<span class="number">3</span>), (<span class="number">1</span>,<span class="number">4</span>), (<span class="number">3</span>,<span class="number">4</span>)])</span><br><span class="line">edge_labels = &#123;(<span class="number">1</span>, <span class="number">2</span>): <span class="number">1</span>, (<span class="number">1</span>, <span class="number">3</span>): <span class="number">3</span>, (<span class="number">1</span>, <span class="number">4</span>): <span class="number">4</span>, (<span class="number">2</span>, <span class="number">3</span>): <span class="number">2</span>, (<span class="number">3</span>, <span class="number">4</span>): <span class="number">5</span>&#125;</span><br><span class="line"></span><br><span class="line">pos = nx.spring_layout(dg)</span><br><span class="line">nx.draw_networkx_edge_labels(dg,pos,edge_labels=edge_labels, font_size=<span class="number">16</span>)</span><br><span class="line">nx.draw_networkx_labels(dg, pos, font_size=<span class="number">20</span>, font_color=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">nx.draw(dg, pos, node_size=<span class="number">1500</span>, node_color=<span class="string">&quot;gray&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/img/math/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/mit/chapter12_3_0.png" alt="png"></p>
+<p>将$A^Ty&#x3D;0$中的方程列出来：<br>$$<br>\left{<br>\begin{aligned}<br>y_1 + y_3 + y_4 &amp;&#x3D; 0 \\<br>y_1 - y_2 &amp;&#x3D; 0 \\<br>y_2 + y_3 - y_5 &amp;&#x3D; 0 \\<br>y_4 - y_5 &amp;&#x3D; 0 \\<br>\end{aligned}<br>\right.<br>$$</p>
+<p>对比看$A^Ty&#x3D;0$的第一个方程，$-y_1-y_3-y_4&#x3D;0$，可以看出这个方程是关于节点$1$上的电流的，方程指出节点$1$上的电流和为零，基尔霍夫定律是一个平衡方程、守恒定律，它说明了流入等于流出，电荷不会在节点上累积。</p>
+<p>对于$A^T$，有上文得出其零空间的维数是$2$，则零空间的基应该有两个向量。</p>
+<ul>
+<li>现在假设$y_1&#x3D;1$，也就是令$1$安培的电流在边$1$上流动；</li>
+<li>由图看出$y_2$也应该为$1$；</li>
+<li>再令$y_3&#x3D;-1$，也就是让$1$安培的电流流回节点$1$；</li>
+<li>令$y_4&#x3D;y_5&#x3D;0$；</li>
+</ul>
+<p>得到一个符合KCL的向量$\begin{bmatrix}1\\1\\-1\\0\\0\end{bmatrix}$，代回方程组发现此向量即为一个解，这个解发生在节点$1,2,3$组成的回路中，该解即为零空间的一个基。</p>
+<p>根据上一个基的经验，可以利用$1,3,4$组成的节点求另一个基：</p>
+<ul>
+<li>令$y_1&#x3D;y_2&#x3D;0$；</li>
+<li>令$y_3&#x3D;1$；</li>
+<li>由图得$y_5&#x3D;1$；</li>
+<li>令$y_4&#x3D;-1$；</li>
+</ul>
+<p>得到令一个符合KCL的向量$\begin{bmatrix}0\\0\\1\\-1\\1\end{bmatrix}$，代回方程可知此为另一个解。</p>
+<p>则$N(A^T)$的一组基为$\begin{bmatrix}1\\1\\-1\\0\\0\end{bmatrix}\quad\begin{bmatrix}0\\0\\1\\-1\\1\end{bmatrix}$。</p>
+<p>看图，利用节点$1,2,3,4$组成的大回路（即边$1,2,5,4$）：</p>
+<ul>
+<li>令$y_3&#x3D;0$；</li>
+<li>令$y_1&#x3D;1$；</li>
+<li>则由图得$y_2&#x3D;1, y_5&#x3D;1, y_4&#x3D;-1$；</li>
+</ul>
+<p>得到符合KCL的向量$\begin{bmatrix}1\\1\\0\\-1\\1\end{bmatrix}$，易看出此向量为求得的两个基之和。</p>
+<p>接下来观察$A$的行空间，即$A^T$的列空间，方便起见我们直接计算<br>$$<br>A^T&#x3D;<br>\begin{bmatrix}<br>-1 &amp; 0 &amp; -1 &amp; -1 &amp; 0 \\<br>1 &amp; -1 &amp; 0 &amp; 0 &amp; 0 \\<br>0 &amp; 1 &amp; 1 &amp; 0 &amp; -1 \\<br>0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\<br>\end{bmatrix}<br>$$<br>的列空间。</p>
+<p>易从基的第一个向量看出前三列$A^T$的线性相关，则$A^T$的主列为第$1,2,4$列，对应在图中就是边$1,2,4$，可以发现这三条边没有组成回路，则在这里可以说<strong>线性无关等价于没有回路</strong>。由$4$个节点与$3$条边组成的图没有回路，就表明$A^T$的对应列向量线性无关，也就是节点数减一（$rank&#x3D;nodes-1$）条边线性无关。另外，没有回路的图也叫作树（Tree）。</p>
+<p>再看左零空间的维数公式：$dim N(A^T)&#x3D;m-r$，左零空间的维数就是相互无关的回路的数量，于是得到$loops&#x3D;edges-(nodes-1)$，整理得：</p>
+<p>$$<br>nodes-edges+loops&#x3D;1<br>$$</p>
+<p>此等式对任何图均有效，任何图都有此拓扑性质，这就是著名的欧拉公式（Euler’s Formula）。$零维（节点）-一维（边）+二维（回路）&#x3D;1$便于记忆。</p>
+<p>总结：</p>
+<ul>
+<li>将电势记为$e$，则在引入电势的第一步中，有$e&#x3D;Ax$；</li>
+<li>电势差导致电流产生，$y&#x3D;Ce$；</li>
+<li>电流满足基尔霍夫定律方程，$A^Ty&#x3D;0$；</li>
+</ul>
+<p>这些是在无电源情况下的方程。</p>
+<p>电源可以通过：在边上加电池（电压源），或在节点上加外部电流 两种方式接入。</p>
+<p>如果在边上加电池，会体现在$e&#x3D;Ax$中；如果在节点上加电流，会体现在$A^Ty&#x3D;f$中，$f$向量就是外部电流。</p>
+<p>将以上三个等式连起来得到$A^TCAx&#x3D;f$。另外，最后一个方程是一个平衡方程，还需要注意的是，方程仅描述平衡状态，方程并不考虑时间。最后，$A^TA$是一个对称矩阵。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg11/" rel="prev" title="MIT线性代数11">
+                  <i class="fa fa-angle-left"></i> MIT线性代数11
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg13/" rel="next" title="MIT线性代数13">
+                  MIT线性代数13 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Daniel Liu</span>
+  </div>
+  <div class="powered-by">
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

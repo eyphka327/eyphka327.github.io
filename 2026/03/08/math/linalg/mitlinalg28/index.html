@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="第二十八讲：正定矩阵和最小值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT线性代数28">
+<meta property="og:url" content="http://example.com/2026/03/08/math/linalg/mitlinalg28/index.html">
+<meta property="og:site_name" content="Eyphka">
+<meta property="og:description" content="第二十八讲：正定矩阵和最小值">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-08T04:23:22.296Z">
+<meta property="article:modified_time" content="2026-03-08T05:03:38.159Z">
+<meta property="article:author" content="Daniel Liu">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/03/08/math/linalg/mitlinalg28/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/03/08/math/linalg/mitlinalg28/","path":"2026/03/08/math/linalg/mitlinalg28/","title":"MIT线性代数28"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MIT线性代数28 | Eyphka</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.1/pdfobject.min.js","integrity":"sha256-jI72I8ZLVflVOisZIOaLvRew3tyvzeu6aZXFm7P7dEo="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js" defer></script>
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Eyphka</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%85%AB%E8%AE%B2%EF%BC%9A%E6%AD%A3%E5%AE%9A%E7%9F%A9%E9%98%B5%E5%92%8C%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="nav-number">1.</span> <span class="nav-text">第二十八讲：正定矩阵和最小值</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%AE%9A%E6%80%A7%E7%9A%84%E5%88%A4%E6%96%AD"><span class="nav-number">1.1.</span> <span class="nav-text">正定性的判断</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Daniel Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/08/math/linalg/mitlinalg28/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Daniel Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eyphka">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MIT线性代数28 | Eyphka">
+      <meta itemprop="description" content="第二十八讲：正定矩阵和最小值">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MIT线性代数28
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-03-08 12:23:22 / Modified: 13:03:38" itemprop="dateCreated datePublished" datetime="2026-03-08T12:23:22+08:00">2026-03-08</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">第二十八讲：正定矩阵和最小值</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="第二十八讲：正定矩阵和最小值"><a href="#第二十八讲：正定矩阵和最小值" class="headerlink" title="第二十八讲：正定矩阵和最小值"></a>第二十八讲：正定矩阵和最小值</h1><p>本讲我们会了解如何完整的测试一个矩阵是否正定，测试$x^TAx$是否具有最小值，最后了解正定的几何意义——椭圆（ellipse）和正定性有关，双曲线（hyperbola）与正定无关。另外，本讲涉及的矩阵均为实对称矩阵。</p>
+<h2 id="正定性的判断"><a href="#正定性的判断" class="headerlink" title="正定性的判断"></a>正定性的判断</h2><p>我们仍然从二阶说起，有矩阵$A&#x3D;\begin{bmatrix}a&amp;b\\b&amp;d\end{bmatrix}$，判断其正定性有以下方法：</p>
+<ol>
+<li>矩阵的所有特征值大于零则矩阵正定：$\lambda_1&gt;0,\ \lambda_2&gt;0$；</li>
+<li>矩阵的所有顺序主子阵（leading principal submatrix）的行列式（即顺序主子式，leading principal minor）大于零则矩阵正定：$a&gt;0,\ ac-b^2&gt;0$；</li>
+<li>矩阵消元后主元均大于零：$a&gt;0,\ \frac{ac-b^2}{a}&gt;0$；</li>
+<li>$x^TAx&gt;0$；</li>
+</ol>
+<p>大多数情况下使用4来定义正定性，而用前三条来验证正定性。</p>
+<p>来计算一个例子：$A&#x3D;\begin{bmatrix}2&amp;6\\6&amp;?\end{bmatrix}$，在$?$处填入多少才能使矩阵正定？</p>
+<ul>
+<li><p>来试试$18$，此时矩阵为$A&#x3D;\begin{bmatrix}2&amp;6\\6&amp;18\end{bmatrix}$，$\det A&#x3D;0$，此时的矩阵成为半正定矩阵（positive semi-definite）。矩阵奇异，其中一个特征值必为$0$，从迹得知另一个特征值为$20$。矩阵的主元只有一个，为$2$。</p>
+<p>  计算$x^TAx$，得$\begin{bmatrix}x_1&amp;x_2\end{bmatrix}\begin{bmatrix}2&amp;6\\6&amp;18\end{bmatrix}\begin{bmatrix}x_1\\x_2\end{bmatrix}&#x3D;2x_1^2+12x_1x_2+18x_2^2$这样我们得到了一个关于$x_1,x_2$的函数$f(x_1,x_2)&#x3D;2x_1^2+12x_1x_2+18x_2^2$，这个函数不再是线性的，在本例中这是一个纯二次型（quadratic）函数，它没有线性部分、一次部分或更高次部分（$Ax$是线性的，但引入$x^T$后就成为了二次型）。</p>
+<p>  当$?$取$18$时，判定1、2、3都是“刚好不及格”。</p>
+</li>
+<li><p>我们可以先看“一定不及格”的样子，令$?&#x3D;7$，矩阵为$A&#x3D;\begin{bmatrix}2&amp;6\\6&amp;7\end{bmatrix}$，二阶顺序主子式变为$-22$，显然矩阵不是正定的，此时的函数为$f(x_1,x_2)&#x3D;2x_1^2+12x_1x_2+7x_2^2$，如果取$x_1&#x3D;1,x_2&#x3D;-1$则有$f(1,-1)&#x3D;2-12+7&lt;0$。</p>
+<p>  如果我们把$z&#x3D;2x^2+12xy+7y^2$放在直角坐标系中，图像过原点$z(0,0)&#x3D;0$，当$y&#x3D;0$或$x&#x3D;0$或$x&#x3D;y$时函数为开口向上的抛物线，所以函数图像在某些方向上是正值；而在某些方向上是负值，比如$x&#x3D;-y$，所以函数图像是一个马鞍面（saddle），$(0,0,0)$点称为鞍点（saddle point），它在某些方向上是极大值点，而在另一些方向上是极小值点。（实际上函数图像的最佳观测方向是沿着特征向量的方向。）</p>
+</li>
+<li><p>再来看一下“一定及格”的情形，令$?&#x3D;20$，矩阵为$A&#x3D;\begin{bmatrix}2&amp;6\\6&amp;20\end{bmatrix}$，行列式为$\det A&#x3D;4$，迹为$trace(A)&#x3D;22$，特征向量均大于零，矩阵可以通过测试。此时的函数为$f(x_1,x_2)&#x3D;2x_1^2+12x_1x_2+20x_2^2$，函数在除$(0,0)$外处处为正。我们来看看$z&#x3D;2x^2+12xy+20y^2$的图像，式子的平方项均非负，所以需要两个平方项之和大于中间项即可，该函数的图像为抛物面（paraboloid）。在$(0,0)$点函数的一阶偏导数均为零，二阶偏导数均为正（马鞍面的一阶偏导数也为零，但二阶偏导数并不均为正，所以），函数在改点取极小值。</p>
+<p>  在微积分中，一元函数取极小值需要一阶导数为零且二阶导数为正$\frac{\mathrm{d}u}{\mathrm{d}x}&#x3D;0, \frac{\mathrm{d}^2u}{\mathrm{d}x^2}&gt;0$。在线性代数中我们遇到了了多元函数$f(x_1,x_2,\cdots,x_n)$，要取极小值需要二阶偏导数矩阵为正定矩阵。</p>
+<p>  在本例中（即二阶情形），如果能用平方和的形式来表示函数，则很容易看出函数是否恒为正，$f(x,y)&#x3D;2x^2+12xy+20y^2&#x3D;2\left(x+3y\right)^2+2y^2$。另外，如果是上面的$?&#x3D;7$的情形，则有$f(x,y)&#x3D;2(x+3y)^2-11y^2$，如果是$?&#x3D;18$的情形，则有$f(x,y)&#x3D;2(x+3y)^2$。</p>
+<p>  如果令$z&#x3D;1$，相当于使用$z&#x3D;1$平面截取该函数图像，将得到一个椭圆曲线。另外，如果在$?&#x3D;7$的马鞍面上截取曲线将得到一对双曲线。</p>
+<p>  再来看这个矩阵的消元，$\begin{bmatrix}2&amp;6\\6&amp;20\end{bmatrix}&#x3D;\begin{bmatrix}1&amp;0\\-3&amp;1\end{bmatrix}\begin{bmatrix}2&amp;6\\0&amp;2\end{bmatrix}$，这就是$A&#x3D;LU$，可以发现矩阵$L$中的项与配平方中未知数的系数有关，而主元则与两个平方项外的系数有关，这也就是为什么正数主元得到正定矩阵。</p>
+<p>  上面又提到二阶导数矩阵，这个矩阵型为$\begin{bmatrix}f_{xx}&amp;f_{xy}\\f_{yx}&amp;f_{yy}\end{bmatrix}$，显然，矩阵中的主对角线元素（纯二阶导数）必须为正，并且主对角线元素必须足够大来抵消混合导数的影响。同时还可以看出，因为二阶导数的求导次序并不影响结果，所以矩阵必须是对称的。现在我们就可以计算$n\times n$阶矩阵了。</p>
+</li>
+</ul>
+<p>接下来计算一个三阶矩阵，$A&#x3D;\begin{bmatrix}2&amp;-1&amp;0\\-1&amp;2&amp;-1\\0&amp;-1&amp;2\end{bmatrix}$，它是正定的吗？函数$x^TAx$是多少？函数在原点去最小值吗？图像是什么样的？</p>
+<ul>
+<li>先来计算矩阵的顺序主子式，分别为$2,3,4$；再来计算主元，分别为$2,\frac{3}{2},\frac{4}{3}$；计算特征值，$\lambda_1&#x3D;2-\sqrt 2,\lambda_2&#x3D;2,\lambda_3&#x3D;2+\sqrt 2$。</li>
+<li>计算$x^TAx&#x3D;2x_1^2+2x_2^2+2x_3^2-2x_1x_2-2x_2x_3$。</li>
+<li>图像是四维的抛物面，当我们在$f(x_1,x_2,x_3)&#x3D;1$处截取该面，将得到一个椭圆体。一般椭圆体有三条轴，特征值的大小决定了三条轴的长度，而特征向量的方向与三条轴的方向相同。</li>
+</ul>
+<p>现在我们将矩阵$A$分解为$A&#x3D;Q\Lambda Q^T$，可以发现上面说到的各种元素都可以表示在这个分解的矩阵中，我们称之为主轴定理（principal axis theorem），即特征向量说明主轴的方向、特征值说明主轴的长度。</p>
+<p>$A&#x3D;Q\Lambda Q^T$是特征值相关章节中最重要的公式。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg27/" rel="prev" title="MIT线性代数27">
+                  <i class="fa fa-angle-left"></i> MIT线性代数27
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/08/math/linalg/mitlinalg29/" rel="next" title="MIT线性代数29">
+                  MIT线性代数29 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Daniel Liu</span>
+  </div>
+  <div class="powered-by">
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
